@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rubik", serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 20px;
+}
