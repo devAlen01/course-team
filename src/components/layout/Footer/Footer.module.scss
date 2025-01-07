@@ -1,0 +1,199 @@
+.Footer {
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18pc;
+    width: 100%;
+    height: 463.12px;
+    background: #f5f9fc;
+    @media (max-width: 1115px) {
+      gap: 5pc;
+    }
+    @media (max-width: 428px) {
+      padding-top: 60px;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .block1 {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: 20px;
+      @media (max-width: 428px) {
+        gap: 10px;
+      }
+      @media (max-width: 391px) {
+        gap: 0;
+      }
+      h1 {
+        font-family: Rubik;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 37.92px;
+        @media (max-width: 391px) {
+          font-size: 27px;
+        }
+      }
+      .description {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        @media (max-width: 391px) {
+          gap: 5px;
+        }
+        p {
+          font-family: Rubik;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 30px;
+          @media (max-width: 391px) {
+            line-height: 20px;
+          }
+
+          @media (max-width: 320px) {
+            font-size: 13px;
+          }
+        }
+        .round {
+          display: flex;
+          align-items: center;
+          gap: 28px;
+          h1 {
+            width: 33.6px;
+            height: 33.6px;
+            background: #23a6f0;
+            border-radius: 50%;
+            @media (max-width: 391px) {
+              width: 26px;
+              height: 26px;
+            }
+          }
+        }
+      }
+      span {
+        font-family: Rubik;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 30px;
+        color: #afb5c0;
+      }
+    }
+    .block2 {
+      margin-top: 35px;
+      display: flex;
+      gap: 120px;
+      @media (max-width: 884px) {
+        margin-top: 0;
+        gap: 30px;
+      }
+      @media (max-width: 376px) {
+        gap: 20px;
+      }
+      @media (max-width: 320px) {
+        gap: 10px;
+      }
+
+      .block11 {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 77px;
+        height: 280px;
+        h1 {
+          font-family: Rubik;
+          font-size: 18px;
+          font-weight: 500;
+          @media (max-width: 376px) {
+            font-size: 15px;
+          }
+        }
+        .texts {
+          display: flex;
+          align-items: start;
+          flex-direction: column;
+          gap: 20px;
+          @media (max-width: 428px) {
+            gap: 10px;
+          }
+          p {
+            font-family: Rubik;
+            font-size: 16px;
+            font-weight: 400;
+            color: #4f5665;
+            @media (max-width: 376px) {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      .block22 {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        h1 {
+          font-family: Rubik;
+          font-size: 18px;
+          font-weight: 500;
+          @media (max-width: 376px) {
+            font-size: 15px;
+          }
+        }
+        .texts {
+          display: flex;
+          align-items: start;
+          flex-direction: column;
+          gap: 20px;
+          @media (max-width: 428px) {
+            gap: 10px;
+          }
+          p {
+            font-family: Rubik;
+            font-size: 16px;
+            font-weight: 400;
+            color: #4f5665;
+            @media (max-width: 376px) {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      .block3 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 121px;
+        height: 120px;
+        @media (max-width: 376px) {
+          width: 100px;
+        }
+        h1 {
+          font-family: Rubik;
+          font-size: 18px;
+          font-weight: 500;
+          @media (max-width: 376px) {
+            font-size: 15px;
+          }
+        }
+        .texts {
+          display: flex;
+          align-items: start;
+          flex-direction: column;
+          gap: 20px;
+          @media (max-width: 428px) {
+            gap: 10px;
+          }
+          p {
+            font-family: Rubik;
+            font-size: 16px;
+            font-weight: 400;
+            color: #4f5665;
+            @media (max-width: 376px) {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

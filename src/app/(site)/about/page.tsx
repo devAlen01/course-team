@@ -1,4 +1,4 @@
-import About from "@/components/pages/About";
+import About from "@/components/pages/AboutPage";
 import React, { FC } from "react";
 
 const page: FC = () => {
