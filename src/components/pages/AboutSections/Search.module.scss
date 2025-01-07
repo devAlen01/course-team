@@ -1,0 +1,121 @@
+.Search {
+  margin: 200px 0 100px 0;
+  @media (max-width: 428px) {
+    margin-top: 20px;
+  }
+  .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    .blockText {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      @media (max-width: 428px) {
+        gap: 0;
+      }
+      h1 {
+        font-family: Rubik;
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 70px;
+        @media (max-width: 428px) {
+          font-size: 27px;
+        }
+        @media (max-width: 391px) {
+          font-size: 25px;
+        }
+        @media (max-width: 320px) {
+          font-size: 20px;
+          line-height: 40px;
+        }
+      }
+      p {
+        font-family: Rubik;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 30px;
+        @media (max-width: 428px) {
+          font-size: 10px;
+          line-height: 20px;
+          text-align: center;
+        }
+        @media (max-width: 391px) {
+          font-size: 8px;
+        }
+      }
+    }
+    .blockSearch {
+      position: absolute;
+      top: 12.5pc;
+      display: flex;
+      align-items: center;
+      @media (max-width: 428px) {
+        top: 130px;
+      }
+      @media (max-width: 320px) {
+        top: 100px;
+      }
+      input {
+        border-radius: 7.59px 0px 0px 7.59px;
+        width: 877px;
+        height: 88px;
+        background: white;
+        border: 2px solid gray;
+        outline: none;
+        padding-left: 22px;
+        font-size: 20px;
+        @media (max-width: 1115px) {
+          width: 800px;
+        }
+        @media (max-width: 884px) {
+          width: 600px;
+        }
+        @media (max-width: 428px) {
+          width: 250px;
+          height: 50px;
+          padding-left: 10px;
+        }
+        @media (max-width: 391px) {
+          width: 230px;
+        }
+        @media (max-width: 391px) {
+          width: 200px;
+        }
+        &::placeholder {
+          font-family: Montserrat;
+          font-size: 21.24px;
+          font-weight: 360;
+          line-height: 42.48px;
+          @media (max-width: 428px) {
+            font-size: 17px;
+          }
+        }
+      }
+      button {
+        width: 177.52px;
+        height: 88px;
+        background: #23a6f0;
+        border: none;
+        font-family: Montserrat;
+        font-size: 21px;
+        font-weight: 400;
+        color: white;
+        text-align: center;
+        border-radius: 0px 7.59px 7.59px 0px;
+        @media (max-width: 428px) {
+          width: 120px;
+          height: 50px;
+          font-size: 15px;
+        }
+        @media (max-width: 391px) {
+          width: 80px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
