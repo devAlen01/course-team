@@ -1,0 +1,152 @@
+.Section1 {
+    .content {
+        display: flex;
+        justify-content: center;
+        padding-top: 130px;
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: flex-start;
+
+            h1 {
+                color: rgb(11, 19, 42);
+                font-family: Rubik, sans-serif;
+                font-size: clamp(24px, 5vw, 50px);
+                font-weight: 700;
+                line-height: clamp(30px, 6vw, 70px);
+                text-align: left;
+            }
+
+            span {
+                color: rgb(79, 86, 101);
+                font-family: Rubik, sans-serif;
+                font-size: clamp(12px, 2vw, 16px);
+                font-weight: 400;
+                line-height: clamp(20px, 4vw, 30px);
+                text-align: left;
+            }
+
+            .btn {
+                width: clamp(150px, 30vw, 251px);
+                height: clamp(40px, 7vw, 59px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                padding: clamp(10px, 2.5vw, 17px) clamp(30px, 10vw, 96px);
+                border-radius: 10px;
+                border: none;
+                color: #fff;
+                font-family: Rubik, sans-serif;
+                font-size: clamp(14px, 1.5vw, 16px);
+                font-weight: 700;
+                line-height: clamp(20px, 2.5vw, 25px);
+                box-shadow: 0px 4px 29px 0px rgba(35, 166, 240, 0.7);
+                background: rgb(35, 166, 240);
+                cursor: pointer;
+                transition: background 0.3s ease;
+
+                &:hover {
+                    background: rgb(30, 140, 220);
+                }
+            }
+        }
+
+        .right {
+            width: clamp(200px, 50vw, 476px);
+            height: clamp(150px, 40vw, 456px);
+            background: url("/assets/boy.png") no-repeat center/cover;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .content {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+    
+            .left {
+                align-items: center;
+                text-align: center;
+    
+                h1 {
+                    text-align: center;
+                }
+    
+                span {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+    
+                .btn {
+                    width: clamp(100%, 50vw, 200px);
+                }
+            }
+    
+            .right {
+                margin-left: 100px;
+                width: clamp(200px, 70vw, 476px);
+                height: 456px;
+                order: 2; 
+            }
+        }
+    }
+    
+
+    @media (max-width: 768px) {
+        .content {
+            gap: 25px;
+
+            .left {
+                h1 {
+                    font-size: clamp(20px, 4.5vw, 32px);
+                }
+
+                span {
+                    font-size: clamp(10px, 2.5vw, 14px);
+                }
+
+                .btn {
+                    width: clamp(130px, 40vw, 180px);
+                }
+            }
+
+            .right {
+                width: 80%;
+                height: auto;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .content {
+            gap: 15px;
+
+            .left {
+                h1 {
+                    font-size: clamp(18px, 5vw, 24px);
+                    line-height: clamp(24px, 6vw, 32px);
+                }
+
+                span {
+                    font-size: clamp(10px, 3vw, 12px);
+                    line-height: clamp(15px, 4vw, 18px);
+                }
+
+                .btn {
+                    width: clamp(100%, 50vw, 150px);
+                    padding: clamp(8px, 2vw, 14px) clamp(20px, 8vw, 70px);
+                }
+            }
+
+            .right {
+                margin-left: 100px;
+                width: clamp(200px, 150vw, 476px);
+                height: 456px;
+                order: 2; 
+            }
+        }
+    }
+}
