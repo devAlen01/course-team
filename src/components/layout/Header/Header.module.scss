@@ -1,0 +1,111 @@
+.Header {
+  padding: 30px 0;
+
+  &.active {
+    background: rgb(35, 166, 240);
+    transition: 0.3s;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      &_title {
+        color: rgb(79, 86, 101);
+        font-family: Montserrat;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.1px;
+      }
+    }
+    .nav {
+      ol {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        li {
+          .link,
+          .active {
+            color: rgb(79, 86, 101);
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+
+            &:hover {
+              color: black;
+              transition: 0.4s;
+            }
+          }
+          .active {
+            color: rgb(35, 166, 240);
+          }
+        }
+      }
+    }
+    .action {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      .login {
+        a {
+          color: rgb(35, 166, 240);
+          font-family: Montserrat;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 0.2px;
+          &:hover {
+            color: black;
+            transition: 0.4s;
+            text-decoration: underline;
+          }
+        }
+      }
+      .register {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 18px;
+        border-radius: 5px;
+        background: rgb(35, 166, 240);
+        transition: 0.4s;
+
+        &:hover {
+          background: rgb(2, 85, 133);
+          transition: 0.4s;
+        }
+
+        a {
+          color: rgb(255, 255, 255);
+          font-family: Montserrat;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 22px;
+          letter-spacing: 0.2px;
+        }
+      }
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        cursor: pointer;
+        border: 1px solid black;
+      }
+      .mob {
+        width: 32px;
+        height: 32px;
+      }
+      .burger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}
