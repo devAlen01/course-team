@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-const Course: FC = () => {
+const Course: FC = (props) => {
   return <>Course</>;
 };
 
