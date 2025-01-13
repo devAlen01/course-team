@@ -4,15 +4,15 @@ import React, { FC, useEffect } from "react";
 import scss from "./Header.module.scss";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { links } from "@/constants/links";
 import { useHeaderStore } from "@/zustand/useHeaderStore";
 import MobileMenu from "./MobileMenu";
 import { IoMenu } from "react-icons/io5";
+import { useGetMeQuery } from "@/redux/api/auth";
 
 const Header: FC = () => {
   const pathname = usePathname();
-  const { data: session } = useSession();
+  const { data } = useGetMeQuery();
   const { isMobile, setIsMobile, isOpen, setIsOpen } = useHeaderStore();
   const changeIsMobile = () => {
     setIsMobile(window.innerWidth <= 700);
@@ -35,7 +35,7 @@ const Header: FC = () => {
               href={"/"}
               className={scss.logo_title}
             >
-              Logo
+              CoursePeak
             </Link>
           </div>
           {!isMobile ? (
@@ -58,7 +58,7 @@ const Header: FC = () => {
                 </ol>
               </nav>
               <div className={scss.action}>
-                {!session?.user ? (
+                {!data?.user ? (
                   <>
                     <div className={scss.login}>
                       <Link href={"/login"}>Войти</Link>
@@ -68,31 +68,34 @@ const Header: FC = () => {
                     </div>
                   </>
                 ) : (
-                  <Link href={"/profile"}>
-                    <img
-                      title={session.user.username}
-                      className={scss.avatar}
-                      src={
-                        session?.user?.avatar
-                          ? session?.user?.avatar!
-                          : "/defAva.png"
-                      }
-                      alt="ava"
-                    />
-                  </Link>
+                  <div className={scss.user}>
+                    <span className={scss.username}>{data?.user.email}</span>
+                    <Link href={"/profile"}>
+                      <img
+                        title={data?.user.name}
+                        className={scss.avatar}
+                        src={
+                          data?.user?.avatarUrl
+                            ? data?.user?.avatarUrl
+                            : "/defAva.png"
+                        }
+                        alt="ava"
+                      />
+                    </Link>
+                  </div>
                 )}
               </div>
             </>
           ) : (
             <>
               <div className={scss.action} onClick={() => setIsOpen(!isOpen)}>
-                {session?.user ? (
+                {data?.user ? (
                   <img
-                    title={session?.user.username}
+                    title={data?.user.name}
                     className={`${scss.avatar} ${scss.mob}`}
                     src={
-                      session?.user?.avatar
-                        ? session?.user?.avatar!
+                      data?.user?.avatarUrl
+                        ? data?.user?.avatarUrl
                         : "/defAva.png"
                     }
                     alt="ava"

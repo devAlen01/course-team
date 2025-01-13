@@ -1,5 +1,5 @@
 .Header {
-  padding: 30px 0;
+  padding: 25px 0;
 
   &.active {
     background: rgb(35, 166, 240);
@@ -105,6 +105,15 @@
         svg {
           font-size: 30px;
         }
+      }
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      .username {
+        font-size: 15px;
+        font-weight: 500;
       }
     }
   }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import scss from "./LoginForm.module.scss";
 import { FcGoogle } from "react-icons/fc";
 import { BiLogoFacebookCircle } from "react-icons/bi";
@@ -8,19 +8,27 @@ import Link from "next/link";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-
+import { useLogInMutation } from "@/redux/api/auth";
+import { GoEye } from "react-icons/go";
+import { GoEyeClosed } from "react-icons/go";
 const FormSchema = z.object({
   email: z.string().min(1, "Почта обязательна").email("Некорректный email"),
   password: z
     .string()
     .min(1, "Пароль обязателен")
-    .min(8, "Пароль должен содержать не менее 8 символов"),
+    .min(8, "Пароль должен содержать не менее 8 символов")
+    .regex(
+      /^[a-zA-Z0-9]+$/,
+      "Пароль должен содержать только латинские буквы и цифры"
+    ),
 });
 
 const LoginForm: FC = (props) => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [logInMutation] = useLogInMutation();
+
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -31,24 +39,21 @@ const LoginForm: FC = (props) => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    const signInData = await signIn("credentials", {
+    setIsLoading(true);
+    const user: AUTH.PostSignInRequest = {
       email: values.email,
       password: values.password,
-      redirect: false,
-    });
-    if (signInData?.error) {
-      toast.error("Email или пароль введены неверно", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
+    };
+    const { data, error } = await logInMutation(user);
+    if (!data?.token || error) {
+      form.setError("email", {
+        message: "Пользователь с таким email не зарегистрирован.",
       });
+      setIsLoading(false);
     } else {
+      localStorage.setItem("token", JSON.stringify(data.token));
       router.push("/profile");
+      setIsLoading(false);
     }
   };
 
@@ -74,17 +79,25 @@ const LoginForm: FC = (props) => {
               </div>
               <div className={scss.textField}>
                 <input
-                  type="password"
+                  type={visible ? "text" : "password"}
                   placeholder="Пароль"
                   {...form.register("password")}
                 />
+
+                <span onClick={() => setVisible(!visible)} className={scss.eye}>
+                  {visible ? <GoEye /> : <GoEyeClosed />}
+                </span>
                 <p className={scss.error}>
                   {form.formState.errors.password?.message}
                 </p>
               </div>
               <p>Забыли пароль?</p>
-              <button className={scss.login} type="submit">
-                Войти
+              <button
+                style={{ background: isLoading ? "black" : "" }}
+                className={scss.login}
+                type="submit"
+              >
+                {isLoading ? "Загрузка..." : "Войти"}
               </button>
             </form>
             <div className={scss.google_facebook}>
