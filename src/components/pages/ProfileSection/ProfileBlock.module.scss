@@ -1,0 +1,159 @@
+.ProfileBlock {
+  width: 100%;
+  height: 300px;
+  border-top: 1px solid gray;
+  .content {
+    margin: 20px 0;
+    position: relative;
+    width: 100%;
+    height: 300px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    @media screen and (max-width: 1150px) {
+      display: flex;
+      flex-direction: column;
+    }
+    .banner {
+      width: 100%;
+      height: 180px;
+      background-image: url("/profile-banner.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 10px 10px 0 0;
+    }
+    .imgWrapper {
+      position: absolute;
+      bottom: 50px;
+      left: 30px;
+      width: 120px;
+      height: 120px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+    .infoBlock {
+      padding: 20px;
+      width: 100%;
+      height: 40%;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      .userInfo {
+        width: 87%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 67%;
+        .username {
+          .name {
+            color: rgb(37, 43, 66);
+            font-family: Rubik;
+            font-size: 20px;
+            font-weight: 500;
+          }
+          .role {
+            color: rgb(0, 0, 0);
+            font-family: Rubik;
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+        .action {
+          button {
+            padding: 11px 20px 11px 20px;
+            border: none;
+            border-radius: 6px;
+            background: rgb(35, 166, 240);
+            color: rgb(255, 255, 255);
+            font-family: Rubik;
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.UpdateProfileForm {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.UpdateProfileForm h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.UpdateProfileForm .textField {
+  margin-bottom: 1rem;
+}
+
+.UpdateProfileForm .textField input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.UpdateProfileForm .textField input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.3);
+}
+
+.UpdateProfileForm .textField p {
+  font-size: 0.875rem;
+  color: #007bff;
+  text-align: right;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.UpdateProfileForm button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.UpdateProfileForm button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.UpdateProfileForm button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.UpdateProfileForm .responseMessage {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.UpdateProfileForm .responseMessage.success {
+  color: #28a745;
+}
+
+.UpdateProfileForm .responseMessage.error {
+  color: #dc3545;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import scss from "./RegisterForm.module.scss";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
@@ -8,20 +8,34 @@ import { BiLogoFacebookCircle } from "react-icons/bi";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import apiClient from "@/services/api";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-
+import { useRegisterMutation } from "@/redux/api/auth";
+import { GoEye } from "react-icons/go";
+import { GoEyeClosed } from "react-icons/go";
 const FormSchema = z.object({
-  name: z.string().min(1, "Имя обязательно").max(100, "Имя слишком длинное"),
+  name: z
+    .string()
+    .min(1, "Имя обязательно")
+    .max(100, "Имя слишком длинное")
+    .regex(
+      /^[a-zA-Z ]+$/,
+      "Имя должно содержать только латинские буквы и пробелы"
+    ),
   email: z.string().min(1, "Почта обязательна").email("Некорректный email"),
   password: z
     .string()
     .min(1, "Пароль обязателен")
-    .min(8, "Пароль должен содержать не менее 8 символов"),
+    .min(8, "Пароль должен содержать не менее 8 символов")
+    .regex(
+      /^[a-zA-Z0-9]+$/,
+      "Пароль должен содержать только латинские буквы и цифры"
+    ),
 });
 
 const RegisterForm: FC = (props) => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [registerMutation] = useRegisterMutation();
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -33,40 +47,26 @@ const RegisterForm: FC = (props) => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    setIsLoading(true);
     try {
       const newUser = {
-        username: values.name,
+        name: values.name,
         email: values.email,
         password: values.password,
       };
-      await apiClient.post("/auth/register", newUser);
-      router.push("/login");
-    } catch (error: any) {
-      if (error.response?.status === 409) {
-        toast.error('🦄 "Пользователь с таким email уже зарегистрирован."', {
-          position: "top-center",
-
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
+      const res = await registerMutation(newUser);
+      if (res.error) {
+        form.setError("email", {
+          message: "Пользователь с таким email уже зарегистрирован.",
         });
+        setIsLoading(false);
+      } else {
+        router.push("/login");
+        setIsLoading(false);
       }
-      setTimeout(() => {
-        toast.error("Не удалось выполнить регистрацию", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      }, 4000);
+    } catch (error: any) {
+      form.setError("email", { message: "Произошла ошибка регистрации." });
+      setIsLoading(false);
     }
   };
 
@@ -84,7 +84,7 @@ const RegisterForm: FC = (props) => {
           <div className={scss.formGroup}>
             <h3>Регистрация</h3>
             <form className={scss.form} onSubmit={form.handleSubmit(onSubmit)}>
-              {/* 1 */}
+              {/* Name */}
               <div className={scss.textField}>
                 <label htmlFor="name">Имя</label>
                 <input
@@ -96,7 +96,7 @@ const RegisterForm: FC = (props) => {
                   {form.formState.errors.name?.message}
                 </p>
               </div>
-              {/* 2 */}
+              {/* Email */}
               <div className={scss.textField}>
                 <label htmlFor="email">Почта</label>
                 <input
@@ -108,25 +108,34 @@ const RegisterForm: FC = (props) => {
                   {form.formState.errors.email?.message}
                 </p>
               </div>
-              {/* 3 */}
+              {/* Password */}
               <div className={scss.textField}>
                 <label htmlFor="pass">Пароль*</label>
                 <input
-                  type="password"
+                  type={visible ? "text" : "password"}
                   placeholder="Введите свой пароль"
                   {...form.register("password")}
                 />
+
+                <span onClick={() => setVisible(!visible)} className={scss.eye}>
+                  {visible ? <GoEye /> : <GoEyeClosed />}
+                </span>
+
                 <p className={scss.error}>
                   {form.formState.errors.password?.message}
                 </p>
               </div>
-              {/* 4 */}
+              {/* Agreement Checkbox */}
               <div className={scss.check}>
                 <input type="checkbox" required />
                 <span>Согласен с Условиями</span>
               </div>
-              <button className={scss.submit} type="submit">
-                Регистрация
+              <button
+                style={{ background: isLoading ? "black" : "" }}
+                className={scss.submit}
+                type="submit"
+              >
+                {isLoading ? "Загрузка..." : "Регистрация"}
               </button>
             </form>
             <div className={scss.google_facebook}>

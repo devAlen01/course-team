@@ -1,16 +1,17 @@
 "use client";
 import { FC } from "react";
 import scss from "./MobileMenu.module.scss";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { useHeaderStore } from "@/zustand/useHeaderStore";
 import { useRouter } from "next/navigation";
 import { links } from "@/constants/links";
+import { useGetMeQuery } from "@/redux/api/auth";
 
 const MobileMenu: FC = () => {
+  const { data } = useGetMeQuery();
+
   const { isOpen, setIsOpen } = useHeaderStore();
-  const { data: session } = useSession();
   const router = useRouter();
 
   return (
@@ -22,7 +23,7 @@ const MobileMenu: FC = () => {
         <nav className={scss.nav}>
           <ul>
             <li>
-              {!session && (
+              {!data?.user && (
                 <button
                   className={scss.auth_btn}
                   onClick={() => router.push("/login")}
@@ -42,9 +43,9 @@ const MobileMenu: FC = () => {
                 </Link>
               </li>
             ))}
-            {session && (
+            {data?.user && (
               <li>
-                {session?.user && (
+                {data?.user && (
                   <Link
                     onClick={() => setIsOpen(false)}
                     className={scss.link}

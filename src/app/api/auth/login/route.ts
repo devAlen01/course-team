@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
-import { register } from "@/lib/auth";
+import { login } from "@/lib/auth";
 import * as z from "zod";
 
-const UserSchema = z.object({
-  name: z.string().min(1, "Имя пользователя обязательно").max(100),
+const LoginSchema = z.object({
   email: z
     .string()
     .min(1, "Электронная почта обязательна")
@@ -18,12 +17,11 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const validatedData = UserSchema.parse(body);
+    const validatedData = LoginSchema.parse(body);
 
-    const { user, token } = await register(
+    const { user, token } = await login(
       validatedData.email,
-      validatedData.password,
-      validatedData.name
+      validatedData.password
     );
 
     return NextResponse.json({ user, token });
