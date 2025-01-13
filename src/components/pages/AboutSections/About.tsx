@@ -7,7 +7,6 @@ import planImg2 from "../../../assets/Rectangle 29876.png";
 import planImg3 from "../../../assets/Rectangle 29877.png";
 import planImg4 from "../../../assets/Rectangle 29878.png";
 import user from "../../../assets/image 1708.png";
-import Search from "./Search";
 const About = () => {
   return (
     <div className={scss.About}>
@@ -15,8 +14,8 @@ const About = () => {
         <div className={scss.content}>
           <div className={scss.block1}>
             <p>
-              Мы являемся топливом для вашего <br /> бизнеса, готовы дать вам
-              образование <br /> и поднять ваш бренд до небес.
+              Мы являемся топливом для вашего бизнеса, готовы дать вам
+              образование и поднять ваш бренд до небес.
             </p>
 
             <div className={scss.block}>
@@ -60,6 +59,7 @@ const About = () => {
                   научных представлений
                 </p>
               </div>
+              <p className={scss.more}>Читать больше</p>
               <span>
                 социологии и других, — насыщенное обобщение новейших научных
                 представлений <br /> Большая история — новое исследовательское
@@ -74,7 +74,6 @@ const About = () => {
               </span>
             </div>
           </div>
-          <Search />
         </div>
       </div>
     </div>
