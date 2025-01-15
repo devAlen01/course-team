@@ -15,16 +15,42 @@ datasource db {
 
 
 
+
+model Course {
+  id          String       @id @default(uuid())
+  title       String     
+  description String?     
+  youtubeUrl  String 
+  price       String     
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  createdBy   String      
+  author      User        @relation("CreatedCourses", fields: [createdBy], references: [id])
+  enrollments Enrollment[] 
+}
+
+model Enrollment {
+  id        String   @id @default(uuid())
+  userId    String   
+  courseId  String   
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation("UserEnrollments", fields: [userId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId]) 
+}
+
 model User {
-  id            String    @id @default(uuid())
+   id           String    @id @default(uuid())
   email         String    @unique
   password      String
   name          String?
   avatarUrl     String?
   role          Role      @default(USER)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
   tokens        Token[]
+  createdCourses Course[]     @relation("CreatedCourses") // Созданные админом курсы
+  enrollments    Enrollment[] @relation("UserEnrollments") // Курсы, на которые записан студент
 }
 
 model Token {

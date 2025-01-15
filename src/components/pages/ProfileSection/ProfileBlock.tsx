@@ -1,5 +1,4 @@
 "use client";
-
 import React, { FC, useState } from "react";
 import scss from "./ProfileBlock.module.scss";
 import { useRouter } from "next/navigation";

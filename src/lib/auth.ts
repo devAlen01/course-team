@@ -150,14 +150,7 @@ export async function updateRole(userId: string, data: { role: string }) {
       },
     });
 
-    const {
-      password: _,
-      avatarUrl,
-      createdAt,
-      name,
-      updatedAt,
-      ...userWithoutPassword
-    } = newRole;
+    const { password: _, avatarUrl, name, ...userWithoutPassword } = newRole;
     return userWithoutPassword;
   } catch (error) {
     throw error;
