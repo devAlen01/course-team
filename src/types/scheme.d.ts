@@ -8,3 +8,10 @@ interface IUser {
   };
   token: string;
 }
+
+interface CreateCourseData {
+  title: string;
+  description?: string;
+  youtubeUrl: string;
+  price: string;
+}

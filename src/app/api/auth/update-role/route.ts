@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { updateRole } from "@/lib/auth";
-import { verifyAuth } from "@/lib/middleware";
+import { verifyAuth } from "@/lib/verifyAuth";
 
 export async function PATCH(req: NextRequest) {
   try {

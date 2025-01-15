@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getMe } from "@/lib/auth";
-import { verifyAuth } from "@/lib/middleware";
+import { verifyAuth } from "@/lib/verifyAuth";
 
 export async function GET(req: NextRequest) {
   try {

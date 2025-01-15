@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 const LayoutSite = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
-  const path = ["/login", "/register"];
+  const path = ["/login", "/register", "/docs"];
   const checkPath = path.some((item) => item === pathname);
   return (
     <div className={scss.LayoutSite}>
