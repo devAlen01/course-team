@@ -1,9 +1,9 @@
-import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-import { hash } from "bcrypt";
+import { register } from "@/lib/auth";
 import * as z from "zod";
+
 const UserSchema = z.object({
-  username: z.string().min(1, "Имя пользователя обязательно").max(100),
+  name: z.string().min(1, "Имя пользователя обязательно").max(100),
   email: z
     .string()
     .min(1, "Электронная почта обязательна")
@@ -14,50 +14,23 @@ const UserSchema = z.object({
     .min(8, "Пароль должен содержать не менее 8 символов"),
 });
 
-export const POST = async (req: Request) => {
-  const body = await req.json();
-  const { email, username, password } = UserSchema.parse(body);
-
+export async function POST(req: Request) {
   try {
-    const existUserByEmail = await db.user.findUnique({
-      where: { email: email },
-    });
-    if (existUserByEmail) {
-      return NextResponse.json(
-        {
-          user: null,
-          message: "Пользователь с такой электронной почтой уже существует!",
-        },
-        { status: 409 }
-      );
+    const body = await req.json();
+
+    const validatedData = UserSchema.parse(body);
+
+    const { user, token } = await register(
+      validatedData.email,
+      validatedData.password,
+      validatedData.name
+    );
+
+    return NextResponse.json({ user, token });
+  } catch (error: any) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ errors: error.errors }, { status: 400 });
     }
-    const hashedPassword = await hash(password, 10);
-    const newUser = await db.user.create({
-      data: {
-        email,
-        username,
-        password: hashedPassword,
-      },
-    });
-    const {
-      password: newUserPassword,
-      createdAt,
-      updatedAt,
-      ...rest
-    } = newUser;
-    return NextResponse.json(
-      {
-        user: rest,
-        message: "Пользователь успешно зарегистрирован!",
-      },
-      { status: 201 }
-    );
-  } catch (error) {
-    return NextResponse.json(
-      {
-        message: "Ошибка!!! Что-то пошло не так.",
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 400 });
   }
-};
+}
