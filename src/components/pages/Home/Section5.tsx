@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './Section5.module.scss';
 import { FaArrowRight } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import Search from '../AboutSections/Search';
 
 
 
@@ -132,7 +131,7 @@ const Section5 = () => {
                         </button>
                     </div>
                 </div>
-                <Search />
+                {/* <Search /> */}
             </div>
         </div>
     );
