@@ -230,7 +230,7 @@ export const swaggerDoc = {
       },
     },
     "/auth/update": {
-      patch: {
+      put: {
         tags: ["User"],
         summary: "Обновление профиля пользователя",
         security: [
@@ -247,9 +247,11 @@ export const swaggerDoc = {
                 properties: {
                   name: {
                     type: "string",
+                    nullable: true,
                   },
                   avatarUrl: {
                     type: "string",
+                    nullable: true,
                   },
                 },
               },

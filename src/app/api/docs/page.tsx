@@ -3,7 +3,7 @@ import SwaggerUI from "swagger-ui-react";
 import { swaggerDoc } from "@/lib/swagger";
 export default function ApiDocs() {
   return (
-    <div className="container">
+    <div className="containe">
       <SwaggerUI spec={swaggerDoc} />
     </div>
   );

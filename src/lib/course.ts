@@ -24,7 +24,7 @@ export async function createCourse(userId: string, data: CreateCourseData) {
   }
 }
 
-// Запись студента на курс
+//! Запись студента на курс
 export async function enrollInCourse(userId: string, courseId: string) {
   try {
     const existingEnrollment = await db.enrollment.findFirst({
@@ -54,7 +54,7 @@ export async function enrollInCourse(userId: string, courseId: string) {
   }
 }
 
-// Отмена записи на курс
+//! Отмена записи на курс
 export async function unenrollFromCourse(userId: string, courseId: string) {
   try {
     const enrollment = await db.enrollment.delete({

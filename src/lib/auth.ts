@@ -129,8 +129,8 @@ export async function updateProfile(
     const updatedUser = await db.user.update({
       where: { id: userId },
       data: {
-        name: data.name,
-        avatarUrl: data.avatarUrl,
+        name: data?.name,
+        avatarUrl: data?.avatarUrl,
       },
     });
 
