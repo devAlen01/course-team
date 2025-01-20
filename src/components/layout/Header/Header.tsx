@@ -25,6 +25,8 @@ const Header: FC = () => {
       window.removeEventListener("resize", changeIsMobile);
     };
   }, [isMobile]);
+  const path = ["/profile", "/chat", "/courseAll"];
+  const checkPathHr = path.some((item) => item === pathname);
   return (
     <header className={`${scss.Header} ${isOpen ? scss.active : ""}`}>
       <div className="container">
@@ -111,6 +113,7 @@ const Header: FC = () => {
           )}
         </div>
       </div>
+      {checkPathHr ? <hr className={scss.hr} /> : null}
     </header>
   );
 };
