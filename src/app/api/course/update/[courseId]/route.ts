@@ -11,19 +11,19 @@ interface Params {
 
 export async function PUT(request: NextRequest, { params }: Params) {
   try {
-    const user = await verifyAuth(request);
-    const existingUser = await getMe(`${user}`);
+    const userId = await verifyAuth(request);
+    const existingUser = await getMe(`${userId}`);
+
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     if (existingUser.role !== "ADMIN") {
       return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
     }
 
     const data = await request.json();
-    const course = await updateCourse(
-      `${existingUser.id}`,
-      params.courseId,
-      data
-    );
+    const course = await updateCourse(userId, params.courseId, data);
 
     return NextResponse.json(course);
   } catch (error: any) {

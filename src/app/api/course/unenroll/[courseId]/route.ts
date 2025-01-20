@@ -11,10 +11,12 @@ interface Params {
 
 export async function POST(request: NextRequest, { params }: Params) {
   try {
-    const user = await verifyAuth(request);
-    const existingUser = await getMe(`${user}`);
+    const userId = await verifyAuth(request);
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-    await unenrollFromCourse(`${existingUser.id}`, params.courseId);
+    await unenrollFromCourse(userId, params.courseId);
     return NextResponse.json({ success: true });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
