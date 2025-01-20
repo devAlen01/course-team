@@ -1,79 +1,343 @@
 .ProfileBlock {
-  width: 100%;
-  height: 300px;
-  border-top: 1px solid gray;
+  margin-top: 120px;
+  margin-left: 21pc;
+  @media (max-width: 884px) {
+    margin-left: 10pc;
+  }
+  @media (max-width: 428px) {
+    margin-left: 0;
+  }
   .content {
-    margin: 20px 0;
-    position: relative;
-    width: 100%;
-    height: 300px;
-    box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    @media screen and (max-width: 1150px) {
-      display: flex;
-      flex-direction: column;
-    }
-    .banner {
-      width: 100%;
-      height: 180px;
-      background-image: url("/profile-banner.png");
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      border-radius: 10px 10px 0 0;
-    }
-    .imgWrapper {
-      position: absolute;
-      bottom: 50px;
-      left: 30px;
-      width: 120px;
-      height: 120px;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .blockAll {
+      position: relative;
+      width: 1030px;
+      height: 301px;
+      box-sizing: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      @media (max-width: 1280px) {
+        width: 890px;
       }
-    }
-    .infoBlock {
-      padding: 20px;
-      width: 100%;
-      height: 40%;
-      display: flex;
-      justify-content: end;
-      align-items: center;
-      .userInfo {
-        width: 87%;
+
+      @media screen and (max-width: 1150px) {
         display: flex;
+        flex-direction: column;
+      }
+      @media (max-width: 1115px) {
+        width: 750px;
+      }
+      @media (max-width: 884px) {
+        width: 680px;
+      }
+      @media (max-width: 835px) {
+        width: 660px;
+      }
+      @media (max-width: 428px) {
+        width: 390px;
+        height: 364px;
+      }
+      @media (max-width: 360px) {
+        width: 360px;
+      }
+      .banner {
+        width: 100%;
+        height: 180px;
+        background-image: url("/profile-banner.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 10px 10px 0 0;
+        @media (max-width: 428px) {
+          height: 155px;
+        }
+      }
+      .imgWrapper {
+        position: absolute;
+        bottom: 50px;
+        left: 30px;
+        width: 120px;
+        height: 120px;
+        @media (max-width: 428px) {
+          top: 100px;
+          left: 140px;
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+      .infoBlock {
+        padding: 20px;
+        width: 100%;
+        height: 40%;
+        display: flex;
+        justify-content: end;
         align-items: center;
-        justify-content: space-around;
-        gap: 67%;
-        .username {
-          .name {
-            color: rgb(37, 43, 66);
-            font-family: Rubik;
-            font-size: 20px;
-            font-weight: 500;
+
+        .userInfo {
+          width: 87%;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          gap: 67%;
+          @media (max-width: 428px) {
+            justify-content: center;
+            align-items: center;
+            gap: 0;
           }
-          .role {
-            color: rgb(0, 0, 0);
-            font-family: Rubik;
-            font-size: 14px;
-            font-weight: 300;
+          .username {
+            .name {
+              color: rgb(37, 43, 66);
+              font-family: Rubik;
+              font-size: 20px;
+              font-weight: 500;
+            }
+            .role {
+              color: rgb(0, 0, 0);
+              font-family: Rubik;
+              font-size: 14px;
+              font-weight: 300;
+            }
+          }
+          .action {
+            button {
+              padding: 11px 20px 11px 20px;
+              border: none;
+              border-radius: 6px;
+              background: rgb(35, 166, 240);
+              color: rgb(255, 255, 255);
+              font-family: Rubik;
+              font-size: 16px;
+              font-weight: 400;
+              cursor: pointer;
+              @media (max-width: 428px) {
+                margin-top: 200px;
+                margin-right: 20px;
+              }
+            }
           }
         }
-        .action {
-          button {
-            padding: 11px 20px 11px 20px;
-            border: none;
-            border-radius: 6px;
-            background: rgb(35, 166, 240);
-            color: rgb(255, 255, 255);
-            font-family: Rubik;
+      }
+    }
+    .block1 {
+      padding-top: 20px;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 1030px;
+      height: 496px;
+      border: 1px solid rgba(0, 0, 0, 0.6);
+      border-radius: 6px;
+      margin-bottom: 100px;
+      @media (max-width: 1280px) {
+        width: 890px;
+      }
+      @media (max-width: 1115px) {
+        width: 750px;
+      }
+      @media (max-width: 884px) {
+        width: 680px;
+      }
+      @media (max-width: 835px) {
+        width: 660px;
+      }
+      @media (max-width: 428px) {
+        width: 0;
+        height: 0;
+        border: none;
+        padding-left: 0;
+      }
+      .blockBtn {
+        display: flex;
+        align-items: center;
+        width: 300px;
+        height: 46px;
+        gap: 19px;
+
+        .btn1 {
+          width: 138px;
+          height: 46px;
+          padding: 11px 26px 11px 26px;
+          gap: 10px;
+          border-radius: 6px;
+          background: #23a6f0;
+          border: none;
+          span {
+            width: 86px;
+            height: 24px;
             font-size: 16px;
             font-weight: 400;
-            cursor: pointer;
+            line-height: 24px;
+            color: #ffffff;
+          }
+        }
+        .btn2 {
+          width: 143px;
+          height: 46px;
+          padding: 11px 26px 11px 26px;
+          border-radius: 6px;
+          border: 1px solid #00000099;
+          span {
+            width: 91px;
+            height: 24px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: #00000099;
+          }
+        }
+      }
+      .block {
+        display: flex;
+        gap: 20px;
+        width: 207.91px;
+        height: 374.05px;
+        @media (max-width: 428px) {
+          flex-wrap: wrap;
+          width: 390px;
+          height: 500px;
+        }
+        @media (max-width: 360px) {
+          width: 350px;
+        }
+
+        .cource {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          -webkit-box-shadow: -2px -4px 80px 0px rgba(34, 60, 80, 0.26);
+          -moz-box-shadow: -2px -4px 80px 0px rgba(34, 60, 80, 0.26);
+          box-shadow: -2px -4px 80px 0px rgba(34, 60, 80, 0.26);
+          border-radius: 5px;
+          .Image {
+            position: relative;
+            .img {
+              width: 200px;
+              height: 175px;
+              object-fit: cover;
+              border-top-left-radius: 6px;
+              border-top-right-radius: 6px;
+              @media (max-width: 428px) {
+                width: 390px;
+                height: 290px;
+              }
+              @media (max-width: 360px) {
+                width: 340px;
+              }
+            }
+            button {
+              position: absolute;
+              top: 12.64px;
+              left: 12.64px;
+              width: 65.64px;
+              height: 16px;
+              border-radius: 1.9px;
+              background: #e74040;
+              font-family: Montserrat;
+              font-size: 8.85px;
+              font-weight: 700;
+              line-height: 15.17px;
+              letter-spacing: 0.12638796865940094px;
+              color: white;
+              border: none;
+            }
+            .heard {
+              position: absolute;
+              top: 139.14px;
+              left: 91.63px;
+              background: white;
+              width: 25.28px;
+              height: 25.28px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              .icon {
+                width: 12.64px;
+                height: 12.64px;
+              }
+            }
+          }
+          .texts {
+            padding: 10px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            h1 {
+              width: 138.39px;
+              height: 31px;
+              font-family: Montserrat;
+              font-size: 10.11px;
+              font-weight: 700;
+              line-height: 15.17px;
+              letter-spacing: 0.06319398432970047px;
+              @media (max-width: 428px) {
+                width: 300px;
+              }
+            }
+            p {
+              width: 177px;
+              height: 38px;
+              font-family: Montserrat;
+              font-size: 8.85px;
+              font-weight: 400;
+              line-height: 12.64px;
+              letter-spacing: 0.12638796865940094px;
+              color: #737373;
+              @media (max-width: 428px) {
+                width: 300px;
+              }
+            }
+            .iconscalendr {
+              width: 176.31px;
+              display: flex;
+              gap: 8px;
+              p {
+                display: flex;
+                gap: 4px;
+                .icon {
+                  width: 10.11px;
+                  height: 10.11px;
+                  color: #23a6f0;
+                }
+                span {
+                  width: 42px;
+                  height: 11px;
+                  font-family: Montserrat;
+                  font-size: 7.58px;
+                  font-weight: 400;
+                  line-height: 10.11px;
+                  letter-spacing: 0.12638796865940094px;
+                  text-align: left;
+                  text-underline-position: from-font;
+                  text-decoration-skip-ink: none;
+                }
+              }
+            }
+            button {
+              display: flex;
+              align-items: center;
+              gap: 6.32px;
+              width: 113px;
+              height: 30px;
+              padding: 8px;
+              border-radius: 23.38px;
+              border: 0.63px solid #23a6f0;
+              background: none;
+              span {
+                font-family: Montserrat;
+                font-size: 8.85px;
+                font-weight: 700;
+                line-height: 15.17px;
+                letter-spacing: 0.12638796865940094px;
+              }
+            }
           }
         }
       }

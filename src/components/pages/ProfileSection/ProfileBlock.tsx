@@ -6,6 +6,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useGetMeQuery, useUpdateProfileMutation } from "@/redux/api/auth";
+import img1 from "../../../../public/assets/product1.jpeg";
+import img2 from "../../../../public/assets/product2.jpeg";
+import img3 from "../../../../public/assets/product3.jpeg";
+import calendar from "../../../../public/assets/calendar.png";
+import img4 from "../../../../public/assets/outlined.png";
+import img5 from "../../../../public/assets/smooth.png";
+import Image from "next/image";
+import { IoTimerOutline } from "react-icons/io5";
+import { MdArrowForwardIos } from "react-icons/md";
+import { FiHeart } from "react-icons/fi";
 
 const ProfileSchema = z.object({
   name: z.string().min(2, "Имя пользователя должно быть не менее 2 символов"),
@@ -114,27 +124,80 @@ const ProfileBlock: FC = (props) => {
       </form>
     );
   }
+  const images = [img1, img2, img3];
 
   return (
     <section className={scss.ProfileBlock}>
       <div className="container">
         <div className={scss.content}>
-          <div className={scss.banner}></div>
-          <div className={scss.imgWrapper}>
-            <img src={data?.user.avatarUrl! || "/defAva.png"} alt="avatart" />
-          </div>
+          <div className={scss.blockAll}>
+            <div className={scss.banner}></div>
+            <div className={scss.imgWrapper}>
+              <img src={data?.user.avatarUrl! || "/defAva.png"} alt="avatart" />
+            </div>
 
-          <div className={scss.infoBlock}>
-            <div className={scss.userInfo}>
-              <div className={scss.username}>
-                <h4 className={scss.name}>{data?.user.name}</h4>
-                <span className={scss.role}>{data?.user.role}</span>
+            <div className={scss.infoBlock}>
+              <div className={scss.userInfo}>
+                <div className={scss.username}>
+                  <h4 className={scss.name}>{data?.user.name}</h4>
+                  <span className={scss.role}>{data?.user.role}</span>
+                </div>
+                <div className={scss.action}>
+                  <button onClick={() => setIsEdit(!isEdit)}>
+                    Редактировать
+                  </button>
+                </div>
               </div>
-              <div className={scss.action}>
-                <button onClick={() => setIsEdit(!isEdit)}>
-                  Редактировать
-                </button>
-              </div>
+            </div>
+          </div>
+          <div className={scss.block1}>
+            <div className={scss.blockBtn}>
+              <button className={scss.btn1}>
+                <span>Мои курсы</span>
+              </button>
+              <button className={scss.btn2}>
+                <span>Избранные</span>
+              </button>
+            </div>
+            <div className={scss.block}>
+              {images.map((el, idx) => (
+                <div key={idx} className={scss.cource}>
+                  <div className={scss.Image}>
+                    <Image src={el} alt="img" className={scss.img} />
+                    <button>Бесплатно</button>
+                    <div className={scss.heard}>
+                      <FiHeart className={scss.icon} />
+                    </div>
+                  </div>
+                  <div className={scss.texts}>
+                    <h1>Как ставить о оценивать задачи</h1>
+                    <p>
+                      Мы ориентируемся на эргономику и ты где работаешь. Это
+                      всего лишь нажатие клавиши.
+                    </p>
+                    <div className={scss.iconscalendr}>
+                      <p>
+                        <IoTimerOutline className={scss.icon} />
+                        <span> 22ч 30мин</span>
+                      </p>
+
+                      <p>
+                        <IoTimerOutline className={scss.icon} />
+                        <span>64 уроков</span>
+                      </p>
+
+                      <p>
+                        <IoTimerOutline className={scss.icon} />
+                        <span> Прогресс</span>
+                      </p>
+                    </div>
+                    <button>
+                      <span>Узнать больше</span>
+                      <MdArrowForwardIos className={scss.icon} />
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
