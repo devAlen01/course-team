@@ -13,7 +13,7 @@ const LayoutSite = ({ children }: { children: ReactNode }) => {
   const pathFooter = [
     "/login",
     "/register",
-    "/docs",
+    "/api/docs",
     "/profile",
     "/chat",
     "/courseAll",
@@ -22,7 +22,7 @@ const LayoutSite = ({ children }: { children: ReactNode }) => {
   const pathProfile = [
     "/login",
     "/register",
-    "/docs",
+    "/api/docs",
     "/",
     "/about",
     "/contact",

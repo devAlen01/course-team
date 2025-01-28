@@ -91,22 +91,9 @@ const Header: FC = () => {
           ) : (
             <>
               <div className={scss.action} onClick={() => setIsOpen(!isOpen)}>
-                {data?.user ? (
-                  <img
-                    title={data?.user.name}
-                    className={`${scss.avatar} ${scss.mob}`}
-                    src={
-                      data?.user?.avatarUrl
-                        ? data?.user?.avatarUrl
-                        : "/defAva.png"
-                    }
-                    alt="ava"
-                  />
-                ) : (
-                  <span className={scss.burger}>
-                    <IoMenu />
-                  </span>
-                )}
+                <span className={scss.burger}>
+                  <IoMenu />
+                </span>
               </div>
               <MobileMenu />
             </>

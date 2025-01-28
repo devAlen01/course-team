@@ -18,6 +18,7 @@ const MobileMenu: FC = () => {
     <div
       className={`${scss.MobileMenu} ${isOpen ? scss.active : ""}`}
       aria-hidden={!isOpen}
+      onClick={() => setIsOpen(false)}
     >
       <div className={scss.content}>
         <nav className={scss.nav}>

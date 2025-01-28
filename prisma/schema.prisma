@@ -21,7 +21,8 @@ model Course {
   title       String     
   description String?     
   youtubeUrl  String 
-  price       String     
+  price       String  
+  category    String   @default("Uncategorized")
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   createdBy   String      

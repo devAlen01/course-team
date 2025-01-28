@@ -15,3 +15,20 @@ interface CreateCourseData {
   youtubeUrl: string;
   price: string;
 }
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  youtubeUrl: string;
+  price: string;
+  category: string;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  author: {
+    id: string;
+    name: string;
+    email: string;
+  };
+}

@@ -1,9 +1,9 @@
 .MobileMenu {
   position: fixed;
-  top: 88px;
+  top: 83px;
   left: 0;
   width: 100%;
-  height: auto;
+  height: 100vh;
   background: rgba(1, 56, 87, 0.563);
   backdrop-filter: blur(20px);
   opacity: 0;
@@ -46,7 +46,7 @@
             background-color: rgb(7, 144, 224);
           }
           a {
-            color: rgb(79, 86, 101);
+            color: rgb(189, 199, 220);
             font-family: Montserrat;
             font-size: 18px;
             font-weight: 700;

@@ -64,6 +64,9 @@ export const swaggerDoc = {
           price: {
             type: "string",
           },
+          category: {
+            type: "string",
+          },
           createdBy: {
             type: "string",
             format: "uuid",
@@ -411,6 +414,9 @@ export const swaggerDoc = {
                     type: "string",
                   },
                   price: {
+                    type: "string",
+                  },
+                  category: {
                     type: "string",
                   },
                 },
