@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import scss from "./CourseAll.module.scss";
-
-import styles from "./CourseAll.module.scss";
 import CourseCard from "@/components/ui/CourseCard";
 import { useGetAllCoursesQuery } from "@/redux/api/course";
 
@@ -25,7 +23,7 @@ const CourseAll = () => {
     <div className={scss.courseAll}>
       <div className="container">
         <div className={scss.content}>
-          <div className={styles.filter}>
+          <div className={scss.filter}>
             {[
               "Все курсы",
               "Управление компанией",
@@ -36,8 +34,8 @@ const CourseAll = () => {
             ].map((name) => (
               <span
                 key={name}
-                className={`${styles.filterButton} ${
-                  activeButton === name ? styles.active : ""
+                className={`${scss.filterButton} ${
+                  activeButton === name ? scss.active : ""
                 }`}
                 onClick={() => handleButtonClick(name)}
               >
