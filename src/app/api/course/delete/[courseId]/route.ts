@@ -3,10 +3,12 @@ import { deleteCourse } from "@/lib/course";
 import { verifyAuth } from "@/lib/verifyAuth";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { courseId: string } }
-) {
+interface Params {
+  params: {
+    courseId: string;
+  };
+}
+export async function DELETE(request: NextRequest, { params }: Params) {
   try {
     const user = await verifyAuth(request);
     const existingUser = await getMe(`${user}`);
