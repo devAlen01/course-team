@@ -3,7 +3,7 @@ import { deleteCourse } from "@/lib/course";
 import { verifyAuth } from "@/lib/verifyAuth";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(request: NextRequest) {
+export const DELETE = async (request: NextRequest) => {
   try {
     const user = await verifyAuth(request);
     const existingUser = await getMe(`${user}`);
@@ -13,7 +13,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     const url = new URL(request.url);
-    const courseId = url.pathname.split("/").pop(); // Извлекаем последний сегмент пути
+    const courseId = url.pathname.split("/").pop();
 
     if (!courseId) {
       return NextResponse.json(
@@ -27,4 +27,4 @@ export async function DELETE(request: NextRequest) {
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-}
+};
