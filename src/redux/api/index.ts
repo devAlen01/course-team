@@ -34,5 +34,5 @@ export const api = createApi({
   refetchOnFocus: false,
   refetchOnReconnect: false,
   endpoints: () => ({}),
-  tagTypes: ["auth"],
+  tagTypes: ["auth", "course"],
 });

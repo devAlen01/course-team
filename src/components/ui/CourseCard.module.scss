@@ -1,0 +1,64 @@
+.course {
+  width: 100%;
+  max-width: 329px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: left;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
+  .cardImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .cardContent {
+    padding: 25px;
+
+    .cardTitle {
+      font-size: 20px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .cardText {
+      font-size: 16px;
+      color: #777;
+      margin-bottom: 25px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cardButton {
+      display: inline-block;
+      color: #23a6f0;
+      font-family: Montserrat, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border: 1px solid #23a6f0;
+      border-radius: 37px;
+      background: #fff;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: #23a6f0;
+        color: white;
+      }
+    }
+  }
+}
