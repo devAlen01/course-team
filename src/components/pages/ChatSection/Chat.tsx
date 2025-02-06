@@ -1,6 +1,9 @@
 "use client";
 import { useState } from 'react';
 import styles from './Chat.module.scss';
+import Image from 'next/image';
+import avatar from '../../../../public/assets/avatar.png'
+
 
 interface Chat {
   name: string;
@@ -48,7 +51,9 @@ export default function Chat() {
             className={styles.chatItem}
             onClick={() => handleChatClick(chat.name)}
           >
-            <div className={styles.chatAvatar}></div>
+            <div className={styles.chatAvatar}>
+              <Image src={avatar} alt='avatar' width={40} height={40} />
+            </div>
             <div className={styles.chatInfo}>
               <div className={styles.chatName}>{chat.name}</div>
               <div className={styles.chatMessage}>{chat.messages[chat.messages.length - 1]}</div>
@@ -61,7 +66,9 @@ export default function Chat() {
         {activeChat && (
           <>
             <div className={styles.chatHeader}>
-              <div className={styles.chatAvatar}></div>
+              <div className={styles.chatAvatar}>
+                <Image src={avatar} alt='avatar' width={40} height={40} />
+              </div>
               <div className={styles.contactName}>{activeChat}</div>
             </div>
             <div className={styles.chatMessages}>

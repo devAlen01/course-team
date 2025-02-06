@@ -131,7 +131,6 @@ const Section5 = () => {
                         </button>
                     </div>
                 </div>
-                {/* <Search /> */}
             </div>
         </div>
     );
