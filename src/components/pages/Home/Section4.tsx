@@ -1,53 +1,50 @@
-import React from 'react';
-import Image from 'next/image';
-import styles from './Section4.module.scss';
-import product1 from '../../../../public/assets/product1.jpeg';
-import product2 from '../../../../public/assets/product2.jpeg';
-import product3 from '../../../../public/assets/product3.jpeg';
+"use client";
+import React from "react";
+import styles from "./Section4.module.scss";
+import CourseCard from "@/components/ui/CourseCard";
+import { useGetAllCoursesQuery } from "@/redux/api/course";
+import { useRouter } from "next/navigation";
 
 const Section4 = () => {
-    return (
-        <div className={styles.Section4}>
-            <div className="container">
-                <h1 className={styles.title}>Доступные курсы</h1>
-                <p className={styles.description}>
-                    Мы предоставляем множество функций, которые вы можете <br /> использовать. Постепенное накопление информации.
-                </p>
-                <div className={styles.cards}>
-                    <div className={styles.card}>
-                        <Image src={product1} alt="Курс 1" className={styles.cardImage} />
-                        <div className={styles.cardContent}>
-                            <h3 className={styles.cardTitle}>Как ставить задачи</h3>
-                            <p className={styles.cardText}>
-                                Мы ориентируемся на эргономику и эффективность. Это всего лишь нажатие клавиши.
-                            </p>
-                            <button className={styles.cardButton}>Узнать больше</button>
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <Image src={product2} alt="Курс 2" className={styles.cardImage} />
-                        <div className={styles.cardContent}>
-                            <h3 className={styles.cardTitle}>Эффективное планирование</h3>
-                            <p className={styles.cardText}>
-                                Простые методы, которые помогут вам достичь ваших целей быстрее и проще.
-                            </p>
-                            <button className={styles.cardButton}>Узнать больше</button>
-                        </div>
-                    </div>
-                    <div className={styles.card}>
-                        <Image src={product3} alt="Курс 3" className={styles.cardImage} />
-                        <div className={styles.cardContent}>
-                            <h3 className={styles.cardTitle}>Работа в команде</h3>
-                            <p className={styles.cardText}>
-                                Узнайте, как эффективно взаимодействовать с коллегами и улучшить продуктивность.
-                            </p>
-                            <button className={styles.cardButton}>Узнать больше</button>
-                        </div>
-                    </div>
-                </div>
+  const { data } = useGetAllCoursesQuery();
+  const router = useRouter();
+  return (
+    <div className={styles.Section4}>
+      <div className="container">
+        <h1 className={styles.title}>Доступные курсы</h1>
+        <p className={styles.description}>
+          Мы предоставляем множество функций, которые вы можете <br />{" "}
+          использовать. Постепенное накопление информации.
+        </p>
+        <div className={styles.cards}>
+          {data?.slice(0, 8).map((item) => (
+            <div
+              onClick={() => router.push(`/details/${item.id}`)}
+              className={styles.course}
+              key={item.id}
+            >
+              <CourseCard
+                description={item.description}
+                title={item.title}
+                youtubeUrl={item.youtubeUrl}
+                price={item.price}
+                id={item.id}
+              />
             </div>
+          ))}
         </div>
-    );
+        <div className={styles.show_more}>
+          <p
+            onClick={() => {
+              router.push(`/courseAll`);
+            }}
+          >
+            Смотреть больше
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Section4;

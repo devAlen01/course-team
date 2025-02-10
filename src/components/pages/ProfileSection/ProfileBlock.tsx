@@ -5,32 +5,57 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useGetMeQuery, useUpdateProfileMutation } from "@/redux/api/auth";
-import img1 from "../../../../public/assets/product1.jpeg";
-import img2 from "../../../../public/assets/product2.jpeg";
-import img3 from "../../../../public/assets/product3.jpeg";
-import calendar from "../../../../public/assets/calendar.png";
-import img4 from "../../../../public/assets/outlined.png";
-import img5 from "../../../../public/assets/smooth.png";
-import Image from "next/image";
-import { IoTimerOutline } from "react-icons/io5";
-import { MdArrowForwardIos } from "react-icons/md";
-import { FiHeart } from "react-icons/fi";
+import {
+  useGetMeQuery,
+  useUpdateProfileMutation,
+  useUpdateProfileRoleMutation,
+} from "@/redux/api/auth";
+import { useCourseAdminQuery, useCourseMyQuery } from "@/redux/api/course";
+import CourseAdmin from "./CourseAdmin";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import CourseStudent from "./CourseStudent";
 
 const ProfileSchema = z.object({
   name: z.string().min(2, "Имя пользователя должно быть не менее 2 символов"),
   avatarUrl: z.string().url("Введите корректный URL аватара"),
+  role: z.enum(["ADMIN", "STUDENT"]).optional(),
 });
 
 type ProfileFormData = z.infer<typeof ProfileSchema>;
 
-const ProfileBlock: FC = (props) => {
+const ProfileBlock: FC = () => {
   const { data } = useGetMeQuery();
   const [updateProfileMutation] = useUpdateProfileMutation();
+  const [updateProfileRoleMutation] = useUpdateProfileRoleMutation();
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const [activeButton1, setActiveButton1] = useState<string>("Мои курсы");
+  const favorite = useSelector((s: RootState) => s.favorite.favorite);
+  const { data: courseMy } = useCourseMyQuery();
+  const filteredCoursesMy = activeButton1 === "Мои курсы" ? courseMy : favorite;
+  const handleButtonClick1 = (buttonName1: string) => {
+    setActiveButton1(buttonName1);
+  };
+  const { data: courseAdmin, isLoading: loading } = useCourseAdminQuery();
+  const [activeButton, setActiveButton] = useState<string>("Все курсы");
+
+  const handleButtonClick = (buttonName: string) => {
+    setActiveButton(buttonName);
+  };
+
+  const filteredCourses = courseAdmin?.filter((course) => {
+    const price = Number(course.price);
+    if (activeButton === "Платные") {
+      return price > 0;
+    }
+    if (activeButton === "Бесплатные") {
+      return price === 0;
+    }
+    return true;
+  });
 
   const {
     register,
@@ -41,18 +66,21 @@ const ProfileBlock: FC = (props) => {
     defaultValues: {
       name: data?.user?.name || "",
       avatarUrl: data?.user?.avatarUrl || "",
+      role: data?.user?.role ?? "STUDENT",
     },
   });
 
   const onSubmit = async (formData: ProfileFormData) => {
     setIsLoading(true);
     setResponseMessage(null);
-
     try {
       await updateProfileMutation({
         avatarUrl: formData.avatarUrl,
         name: formData.name,
       }).unwrap();
+      await updateProfileRoleMutation({
+        role: formData.role || "STUDENT",
+      });
       setResponseMessage("Профиль успешно обновлён");
       setIsEdit(false);
       router.refresh();
@@ -93,6 +121,12 @@ const ProfileBlock: FC = (props) => {
             <p className="error">{errors.avatarUrl.message}</p>
           )}
         </div>
+        <div className={scss.textField}>
+          <select {...register("role")} className="inputField">
+            <option value="ADMIN">ADMIN</option>
+            <option value="STUDENT">STUDENT</option>
+          </select>
+        </div>
 
         <button
           type="submit"
@@ -124,7 +158,6 @@ const ProfileBlock: FC = (props) => {
       </form>
     );
   }
-  const images = [img1, img2, img3];
 
   return (
     <section className={scss.ProfileBlock}>
@@ -151,54 +184,69 @@ const ProfileBlock: FC = (props) => {
             </div>
           </div>
           <div className={scss.block1}>
-            <div className={scss.blockBtn}>
-              <button className={scss.btn1}>
-                <span>Мои курсы</span>
-              </button>
-              <button className={scss.btn2}>
-                <span>Избранные</span>
-              </button>
-            </div>
-            <div className={scss.block}>
-              {images.map((el, idx) => (
-                <div key={idx} className={scss.cource}>
-                  <div className={scss.Image}>
-                    <Image src={el} alt="img" className={scss.img} />
-                    <button>Бесплатно</button>
-                    <div className={scss.heard}>
-                      <FiHeart className={scss.icon} />
-                    </div>
-                  </div>
-                  <div className={scss.texts}>
-                    <h1>Как ставить о оценивать задачи</h1>
-                    <p>
-                      Мы ориентируемся на эргономику и ты где работаешь. Это
-                      всего лишь нажатие клавиши.
-                    </p>
-                    <div className={scss.iconscalendr}>
-                      <p>
-                        <IoTimerOutline className={scss.icon} />
-                        <span> 22ч 30мин</span>
-                      </p>
-
-                      <p>
-                        <IoTimerOutline className={scss.icon} />
-                        <span>64 уроков</span>
-                      </p>
-
-                      <p>
-                        <IoTimerOutline className={scss.icon} />
-                        <span> Прогресс</span>
-                      </p>
-                    </div>
-                    <button>
-                      <span>Узнать больше</span>
-                      <MdArrowForwardIos className={scss.icon} />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {data?.user.role === "ADMIN" ? (
+              <div className={scss.blockBtn}>
+                {["Все курсы", "Платные", "Бесплатные"].map((name) => (
+                  <span
+                    key={name}
+                    className={`${scss.filterButton} ${
+                      activeButton === name ? scss.active : ""
+                    }`}
+                    onClick={() => handleButtonClick(name)}
+                  >
+                    {name}
+                  </span>
+                ))}
+                <button className={scss.btn1}>
+                  <span onClick={() => router.push(`/create`)}>
+                    Создавать курсы
+                  </span>
+                </button>
+              </div>
+            ) : (
+              <div className={scss.blockBtn}>
+                {["Мои курсы", "Избранные"].map((name1) => (
+                  <span
+                    key={name1}
+                    className={`${scss.filterButton} ${
+                      activeButton1 === name1 ? scss.active : ""
+                    }`}
+                    onClick={() => handleButtonClick1(name1)}
+                  >
+                    {name1}
+                  </span>
+                ))}
+              </div>
+            )}
+            {data?.user.role === "ADMIN" &&
+            filteredCourses &&
+            filteredCourses.length > 0 ? (
+              <div className={scss.block}>
+                {filteredCourses.map((el) => (
+                  <CourseAdmin
+                    key={el.id}
+                    title={el.title}
+                    youtubeUrl={el.youtubeUrl}
+                    description={el.description}
+                    price={el.price}
+                    id={el.id}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className={scss.block}>
+                {filteredCoursesMy?.map((el) => (
+                  <CourseStudent
+                    key={el.id}
+                    title={el.title}
+                    youtubeUrl={el.youtubeUrl}
+                    description={el.description}
+                    price={el.price}
+                    id={el.id}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

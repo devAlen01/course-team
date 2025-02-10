@@ -1,28 +1,37 @@
 import React, { FC } from "react";
-import scss from "./CourseCard.module.scss";
-
-import getYouTubeID from "get-youtube-id";
+import scss from "./CourseStudent.module.scss";
 import { IoTimerOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
-import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import { FaChevronRight, FaHeart, FaRegHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import { addToFavorite, deleteFavorite } from "@/redux/createFavorite";
+import getYouTubeID from "get-youtube-id";
+import { useRouter } from "next/navigation";
+import { RootState } from "@/redux/store";
 
-const CourseCard: FC<
-  Pick<Course, "youtubeUrl" | "description" | "title" | "price" | "id">
-> = ({ description, title, youtubeUrl, price, id }) => {
-  const videoId = getYouTubeID(youtubeUrl);
-  const imgUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-  const router = useRouter();
+interface ICourse {
+  title: string;
+  youtubeUrl: string;
+  description: string;
+  price: string;
+  id: string;
+}
+const CourseStudent: FC<ICourse> = ({
+  title,
+  youtubeUrl,
+  description,
+  price,
+  id,
+}) => {
   const dispatch = useDispatch();
   const favorite = useSelector((s: RootState) => s.favorite.favorite);
   const someFavorite = favorite.some((item: { id: string }) => item.id === id);
-
+  const videoId = getYouTubeID(youtubeUrl);
+  const imgUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  const router = useRouter();
   return (
-    <div className={scss.courses}>
+    <div key={id} className={scss.courses}>
       <div className={scss.course}>
-        <img src={imgUrl} alt={"img"} className={scss.cardImage} />
+        <img src={imgUrl} alt="img" className={scss.cardImage} />
         <button className={scss.btn1}>
           {Number(price) === 0 ? "Бесплатно" : `${price} сом`}
         </button>
@@ -50,9 +59,7 @@ const CourseCard: FC<
           )}
         </div>
         <div className={scss.cardContent}>
-          <h3 className={scss.cardTitle}>
-            {title.length > 26 ? `${title.slice(0, 26)}...` : title}
-          </h3>
+          <h3 className={scss.cardTitle}>{title.slice(0, 30)}...</h3>
           <p className={scss.cardText}>{description}</p>
           <div className={scss.iconscalendr}>
             <p>
@@ -75,6 +82,7 @@ const CourseCard: FC<
             onClick={() => router.push(`/details/${id}`)}
           >
             Узнать больше
+            <FaChevronRight className={scss.rightIcon} />
           </button>
         </div>
       </div>
@@ -82,4 +90,4 @@ const CourseCard: FC<
   );
 };
 
-export default CourseCard;
+export default CourseStudent;
