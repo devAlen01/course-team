@@ -438,6 +438,44 @@ export const swaggerDoc = {
         },
       },
     },
+    "/course/review": {
+      post: {
+        tags: ["Courses"],
+        summary: "Оставить отзыв",
+        security: [
+          {
+            BearerAuth: [],
+          },
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  review: {
+                    type: "string",
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          201: {
+            description: "Курс создан",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Course",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     "/course/update/{courseId}": {
       parameters: [
         {
