@@ -50,23 +50,54 @@
         justify-content: flex-end;
         margin-bottom: 30px;
         gap: 20px;
+    
         .circle {
             width: 60px;
             height: 60px;
             box-sizing: border-box;
-            border: 2px solid rgb(35, 166, 240);
+            border: 2px solid #23a6f0;
             border-radius: 50%;
             cursor: pointer;
-        }
-        .prevButton {
-            width: 20px;
-            height: 17px;
-        }
-        .nextButton {
-            width: 20px;
-            height: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+    
+            &:hover {
+                background: #23a6f0;
+                color: white;
+                transform: scale(1.1);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .prevButton {
+                svg {
+                    width: 20px;
+                    height: 20px;
+                    fill: currentColor;
+                    transition: fill 0.3s ease;
+                    fill: #fff;
+                    background: #fff;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+            }
+    
+            .nextButton {
+                svg {
+                    width: 20px;
+                    height: 20px;
+                    fill: currentColor;
+                    transition: fill 0.3s ease;
+                    fill: #fff;
+                    background: #fff;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+            }
         }
     }
+    
 
     .avatar {
         display: flex;

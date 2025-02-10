@@ -4,7 +4,6 @@ import styles from "./Section3.module.scss";
 import product1 from "../../../../public/assets/product1.jpeg";
 import product2 from "../../../../public/assets/product2.jpeg";
 import product3 from "../../../../public/assets/product3.jpeg";
-import Search from "../AboutSections/Search";
 
 const Section3 = () => {
   return (
