@@ -1,51 +1,65 @@
-import React from "react";
-import Image from "next/image";
-import styles from "./Section3.module.scss";
-import product1 from "../../../../public/assets/product1.jpeg";
-import product2 from "../../../../public/assets/product2.jpeg";
-import product3 from "../../../../public/assets/product3.jpeg";
-
+import scss from "./Section3.module.scss";
+import vector from "../../../assets/Vector.png";
+import group from "../../../assets/Group.png";
+import vector1 from "../../../assets/Vector (1).png";
 const Section3 = () => {
   return (
-    <div className={styles.Section3}>
+    <div className={scss.Section3}>
       <div className="container">
-        <h1 className={styles.title}>Доступные курсы</h1>
-        <p className={styles.description}>
-          Мы предоставляем множество функций, которые вы можете <br />{" "}
-          использовать. Постепенное накопление информации.
-        </p>
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            <Image src={product1} alt="Курс 1" className={styles.cardImage} />
-            <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>Как ставить задачи</h3>
-              <p className={styles.cardText}>
-                Мы ориентируемся на эргономику и эффективность. Это всего лишь
-                нажатие клавиши.
+        <div className={scss.content}>
+          <div className={scss.block1}>
+            <div className={scss.text1}>
+              <h1>Почему (название кур.)</h1>
+              <p>
+                Мы предоставляем множество функций, которые вы можете
+                использовать. Постепенное накопление информация{" "}
               </p>
-              <button className={styles.cardButton}>Узнать больше</button>
+            </div>
+            <div className={scss.text2}>
+              <h1>100+</h1>
+              <p>
+                Мы предоставляем множество функций, которые вы можете
+                использовать. Постепенное накопление информация{" "}
+              </p>
+            </div>
+            <div className={scss.text2}>
+              <h1>80+</h1>
+              <p>
+                Мы предоставляем множество функций, которые вы можете
+                использовать. Постепенное накопление информация{" "}
+              </p>
             </div>
           </div>
-          <div className={styles.card}>
-            <Image src={product2} alt="Курс 2" className={styles.cardImage} />
-            <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>Эффективное планирование</h3>
-              <p className={styles.cardText}>
-                Простые методы, которые помогут вам достичь ваших целей быстрее
-                и проще.
-              </p>
-              <button className={styles.cardButton}>Узнать больше</button>
+          <div className={scss.block2}>
+            <div className={scss.blockText1}>
+              <img src={vector.src} alt="" />
+              <div className={scss.text}>
+                <h5>Личное обучение</h5>
+                <p>
+                  Постепенное накопление информация об атомном и мелкомасштабное
+                  поведение...
+                </p>
+              </div>
             </div>
-          </div>
-          <div className={styles.card}>
-            <Image src={product3} alt="Курс 3" className={styles.cardImage} />
-            <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>Работа в команде</h3>
-              <p className={styles.cardText}>
-                Узнайте, как эффективно взаимодействовать с коллегами и улучшить
-                продуктивность.
-              </p>
-              <button className={styles.cardButton}>Узнать больше</button>
+            <div className={scss.blockText1}>
+              <img src={group.src} alt="" />
+              <div className={scss.text}>
+                <h5>Интерактивные уроки</h5>
+                <p>
+                  Постепенное накопление информация об атомном и мелкомасштабное
+                  поведение...
+                </p>
+              </div>
+            </div>
+            <div className={scss.blockText1}>
+              <img src={vector1.src} alt="" />
+              <div className={scss.text}>
+                <h5>24/7 Поддержка учеников</h5>
+                <p>
+                  Постепенное накопление информация об атомном и мелкомасштабное
+                  поведение...
+                </p>
+              </div>
             </div>
           </div>
         </div>

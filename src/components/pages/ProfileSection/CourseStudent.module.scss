@@ -36,6 +36,7 @@
       letter-spacing: 0.12638796865940094px;
       text-align: center;
     }
+
     .heartBlock {
       position: absolute;
       top: 102.14px;
@@ -62,15 +63,16 @@
       display: flex;
       flex-direction: column;
       align-items: start;
-      gap: 10px;
+      gap: 14px;
       .cardTitle {
         font-family: Montserrat;
         font-family: sans-serif;
-        font-size: 12px;
+        font-size: 10.11px;
         font-weight: 700;
         line-height: 15.17px;
         letter-spacing: 0.06319398432970047px;
       }
+
       .cardText {
         width: 220px;
         font-family: Montserrat;
@@ -111,7 +113,6 @@
         }
       }
       .cardButton {
-        margin-top: 10px;
         display: flex;
         align-items: center;
         justify-content: center;

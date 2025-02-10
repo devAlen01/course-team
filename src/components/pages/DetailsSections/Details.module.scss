@@ -1,0 +1,276 @@
+.Marketing1 {
+  margin-top: 40px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    @media (max-width: 428px) {
+      gap: 30px;
+    }
+    .block1 {
+      display: flex;
+      justify-content: space-between;
+      .p {
+        cursor: pointer;
+        font-size: 20px;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 23.44px;
+        letter-spacing: -0.01em;
+        @media (max-width: 428px) {
+          display: none;
+        }
+      }
+      .text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        h1 {
+          font-family: Rubik;
+          font-family: sans-serif;
+          font-size: 50px;
+          font-weight: 700;
+          line-height: 70px;
+          @media (max-width: 428px) {
+            font-size: 24px;
+            line-height: 30px;
+            text-align: center;
+          }
+        }
+        p {
+          text-align: center;
+          width: 555px;
+          height: 60px;
+          font-family: Rubik;
+          font-family: sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 30px;
+          @media (max-width: 428px) {
+            width: 379px;
+            height: 54px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+          }
+          @media (max-width: 391px) {
+            width: 350px;
+          }
+          @media (max-width: 360px) {
+            width: 320px;
+          }
+          @media (max-width: 320px) {
+            width: 310px;
+          }
+        }
+      }
+    }
+    .block2 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 80px;
+      .blockImgText {
+        position: relative;
+        display: flex;
+        gap: 40px;
+        .btn1 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 103px;
+          height: 24px;
+          border-radius: 3px;
+          border: none;
+          outline: none;
+          background: #e74040;
+          font-family: Montserrat;
+          font-family: sans-serif;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 24px;
+          color: #ffffff;
+          letter-spacing: 0.20000000298023224px;
+          text-align: center;
+          text-underline-position: from-font;
+          text-decoration-skip-ink: none;
+        }
+        .img {
+          width: 457px;
+          height: 500px;
+          object-fit: cover;
+          @media (max-width: 428px) {
+            width: 390px;
+            height: 440px;
+          }
+          @media (max-width: 415px) {
+            width: 370px;
+          }
+          @media (max-width: 391px) {
+            width: 350px;
+          }
+          @media (max-width: 376px) {
+            width: 330px;
+            height: 400px;
+          }
+          @media (max-width: 360px) {
+            width: 320px;
+          }
+          @media (max-width: 320px) {
+            width: 290px;
+          }
+        }
+        .texts {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          gap: 20px;
+          h1 {
+            font-family: Rubik;
+            font-family: sans-serif;
+            font-size: 37px;
+            font-weight: 700;
+            line-height: 39px;
+            letter-spacing: 0.10000000149011612px;
+            @media (max-width: 1115px) {
+              font-size: 26px;
+            }
+            @media (max-width: 428px) {
+              font-size: 24px;
+              line-height: 30px;
+              text-align: left;
+            }
+          }
+
+          p {
+            width: 700px;
+            font-family: Rubik;
+            font-family: sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22.86px;
+            @media (max-width: 1115px) {
+              width: 460;
+              font-size: 14px;
+              line-height: 20px;
+            }
+            @media (max-width: 884px) {
+              width: 450px;
+            }
+            @media (max-width: 428px) {
+              width: 390px;
+              font-size: 16px;
+              line-height: 22.86px;
+            }
+            @media (max-width: 415px) {
+              width: 370px;
+            }
+            @media (max-width: 391px) {
+              width: 350px;
+            }
+            @media (max-width: 376px) {
+              width: 330px;
+            }
+            @media (max-width: 360px) {
+              width: 320px;
+            }
+            @media (max-width: 320px) {
+              width: 290px;
+            }
+          }
+        }
+      }
+      button {
+        width: 335px;
+        height: 52px;
+        border-radius: 5px;
+        border: none;
+        background: #23a6f0;
+        font-family: Rubik;
+        font-family: sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 22px;
+        letter-spacing: 0.20000000298023224px;
+        color: #ffffff;
+        @media (max-width: 428px) {
+          margin-top: 30px;
+          margin-left: 20px;
+        }
+        @media (max-width: 391px) {
+          margin-left: 0;
+        }
+        @media (max-width: 376px) {
+          width: 310px;
+        }
+        @media (max-width: 360px) {
+          width: 317px;
+        }
+        @media (max-width: 320px) {
+          width: 300px;
+        }
+      }
+    }
+    .block3 {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: transform 0.3s ease;
+
+      hr {
+        width: 100%;
+      }
+      .text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+          font-family: Rubik;
+          font-family: sans-serif;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 26px;
+          letter-spacing: -0.4000000059604645px;
+        }
+        .iconDown {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: blue;
+          color: white;
+        }
+        .iconUp {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: #0000004a;
+          color: white;
+          @media (max-width: 428px) {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+      .blockText1 {
+        cursor: pointer;
+        display: flex;
+        align-items: start;
+        .block33 {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .img11 {
+            width: 341;
+            height: 170;
+            border-radius: 8px;
+            object-fit: contain;
+          }
+          p {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -40,6 +40,24 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["auth"],
     }),
+    updateProfileRole: build.mutation<
+      AUTH.UpdateProfileRoleResponse,
+      AUTH.UpdateProfileRoleRequest
+    >({
+      query: (data) => ({
+        url: "/auth/update-role",
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["auth"],
+    }),
+    Logout: build.mutation<AUTH.LogoutResponse, AUTH.LogoutRequest>({
+      query: () => ({
+        url: "/auth/logout",
+        method: "POST",
+      }),
+      invalidatesTags: ["auth"],
+    }),
   }),
 });
 
@@ -48,4 +66,6 @@ export const {
   useLogInMutation,
   useGetMeQuery,
   useUpdateProfileMutation,
+  useLogoutMutation,
+  useUpdateProfileRoleMutation,
 } = api;

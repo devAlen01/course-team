@@ -9,10 +9,20 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { CiStar } from "react-icons/ci";
 import { MdClose } from "react-icons/md";
+import { useLogoutMutation } from "@/redux/api/auth";
 
 const SiteBar: FC = () => {
   const router = useRouter();
   const [rateWindow, setRateWindow] = useState(false);
+  const [logoutMutation] = useLogoutMutation();
+  const handleLogout = async () => {
+    try {
+      await logoutMutation();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
   return (
     <div className={scss.SiteBar}>
       <div className="container">
@@ -45,10 +55,10 @@ const SiteBar: FC = () => {
                 <BsFillQuestionCircleFill className={scss.icon} />
                 <span>Помощь</span>
               </Link>
-              <Link href="" className={scss.texts}>
+              <div onClick={handleLogout} className={scss.texts}>
                 <FaArrowRightFromBracket className={scss.icon} />
                 <span>Выйти</span>
-              </Link>
+              </div>
             </div>
           </div>
           {rateWindow ? (

@@ -1,8 +1,8 @@
-import LessonPage from "@/components/pages/LessonPage";
+import CreatePage from "@/components/pages/CreatePage";
 const page = () => {
   return (
     <>
-      <LessonPage />
+      <CreatePage />
     </>
   );
 };

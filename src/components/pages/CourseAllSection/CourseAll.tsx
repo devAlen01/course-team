@@ -7,13 +7,11 @@ import { useGetAllCoursesQuery } from "@/redux/api/course";
 
 const CourseAll = () => {
   const { data } = useGetAllCoursesQuery();
+  const [showMore, setShowMore] = useState<number>(8);
   const [activeButton, setActiveButton] = useState<string>("Все курсы");
-  const [showMore, setShowMore] = useState<number>(6);
-
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
   };
-
   const filteredCourses =
     activeButton === "Все курсы"
       ? data
@@ -51,6 +49,8 @@ const CourseAll = () => {
                   description={item.description}
                   title={item.title}
                   youtubeUrl={item.youtubeUrl}
+                  price={item.price}
+                  id={item.id}
                 />
               </div>
             ))}

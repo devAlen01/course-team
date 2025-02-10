@@ -1,13 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { api } from "./api";
+import createFavoriteSlice from "./createFavorite";
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
+    favorite: createFavoriteSlice,
   },
 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
 });
 
-// hi
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
