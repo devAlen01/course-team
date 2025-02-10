@@ -175,3 +175,19 @@ export async function deleteCourse(userId: string, courseId: string) {
     throw error;
   }
 }
+
+export const review = async (data: { review: string }) => {
+  if (!data?.review.trim()) {
+    return { status: "ERROR", message: "Пустое поле" };
+  }
+
+  try {
+    const comment = await db.review.create({
+      data: { review: data.review },
+    });
+
+    return { status: "OK", comment };
+  } catch (error) {
+    return { status: "ERROR" };
+  }
+};
