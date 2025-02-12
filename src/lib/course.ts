@@ -105,7 +105,7 @@ export async function getAllCourses() {
             email: true,
           },
         },
-        Review: {
+        reviews: {
           select: {
             id: true,
             review: true,
@@ -190,7 +190,7 @@ export async function deleteCourse(userId: string, courseId: string) {
     throw error;
   }
 }
-// оставить отзыв курсу
+//! оставить отзыв курсу
 export const reviewCourse = async (data: {
   review: string;
   courseId: string;
