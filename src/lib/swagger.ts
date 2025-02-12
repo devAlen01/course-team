@@ -349,7 +349,7 @@ export const swaggerDoc = {
                 schema: {
                   type: "array",
                   items: {
-                    $ref: "#/components/schemas/Student",
+                    $ref: "#/components/schemas/Course",
                   },
                 },
               },
