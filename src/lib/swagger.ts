@@ -81,6 +81,24 @@ export const swaggerDoc = {
           },
         },
       },
+      Student: {
+        type: "object",
+        properties: {
+          id: {
+            type: "string",
+            format: "uuid",
+          },
+
+          name: {
+            type: "string",
+            nullable: true,
+          },
+          avatarUrl: {
+            type: "string",
+            nullable: true,
+          },
+        },
+      },
     },
   },
   paths: {
@@ -331,7 +349,7 @@ export const swaggerDoc = {
                 schema: {
                   type: "array",
                   items: {
-                    $ref: "#/components/schemas/Course",
+                    $ref: "#/components/schemas/Student",
                   },
                 },
               },
@@ -454,6 +472,9 @@ export const swaggerDoc = {
               schema: {
                 type: "object",
                 properties: {
+                  courseId: {
+                    type: "string",
+                  },
                   review: {
                     type: "string",
                   },
@@ -464,11 +485,49 @@ export const swaggerDoc = {
         },
         responses: {
           201: {
-            description: "Курс создан",
+            description: "Отзыв успешно отправлен",
             content: {
               "application/json": {
                 schema: {
                   $ref: "#/components/schemas/Course",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    "/course/enrollment-count": {
+      get: {
+        tags: ["Courses"],
+        summary: "Получение списка студентов",
+        security: [
+          {
+            BearerAuth: [],
+          },
+        ],
+        parameters: [
+          {
+            in: "query",
+            name: "authorId",
+            required: true,
+            schema: {
+              type: "string",
+            },
+            description: "Идентификатор админа, создавщего курса",
+          },
+        ],
+
+        responses: {
+          200: {
+            description: "Список студентов",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "array",
+                  items: {
+                    $ref: "#/components/schemas/User",
+                  },
                 },
               },
             },
