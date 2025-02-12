@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistMontserrat.variable} ${geistRubik.variable}`}>
+      <body className={`${geistMontserrat.style} ${geistRubik.style}`}>
         <LayoutClient>
           <LayoutSite>{children}</LayoutSite>
         </LayoutClient>

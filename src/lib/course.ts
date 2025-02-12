@@ -105,6 +105,21 @@ export async function getAllCourses() {
             email: true,
           },
         },
+        Review: {
+          select: {
+            id: true,
+            review: true,
+            createdAt: true,
+            updatedAt: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+                avatarUrl: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -175,19 +190,102 @@ export async function deleteCourse(userId: string, courseId: string) {
     throw error;
   }
 }
-
-export const review = async (data: { review: string }) => {
+// оставить отзыв курсу
+export const reviewCourse = async (data: {
+  review: string;
+  courseId: string;
+  userId: string;
+}) => {
   if (!data?.review.trim()) {
     return { status: "ERROR", message: "Пустое поле" };
   }
 
   try {
+    const course = await db.course.findUnique({
+      where: { id: data.courseId },
+    });
+
+    if (!course) {
+      return { status: "ERROR", message: "Курс не найден" };
+    }
+
     const comment = await db.review.create({
-      data: { review: data.review },
+      data: {
+        review: data.review,
+        courseId: data.courseId,
+        userId: data.userId,
+      },
     });
 
     return { status: "OK", comment };
   } catch (error) {
-    return { status: "ERROR" };
+    console.error("Ошибка при создании отзыва:", error);
+    return { status: "ERROR", message: "Произошла ошибка при создании отзыва" };
+  }
+};
+
+// export const getCourseEnrollmentCount = async (courseId: string) => {
+//   try {
+//     const enrollments = await db.enrollment.findMany({
+//       where: { courseId },
+//       select: {
+//         user: {
+//           select: {
+//             id: true,
+//             name: true,
+//             email: true,
+//             avatarUrl: true,
+//           },
+//         },
+//       },
+//     });
+
+//     return enrollments;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+export const getAllUsersEnrolledInAuthorsCourses = async (authorId: string) => {
+  try {
+    // Получаем все курсы, созданные автором
+    const courses = await db.course.findMany({
+      where: {
+        createdBy: authorId, // Фильтруем по автору
+      },
+      select: {
+        enrollments: {
+          // Получаем записи пользователей на курс
+          select: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                avatarUrl: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    // Собираем всех пользователей, подписанных на курсы
+    const usersSet = new Set<string>(); // Используем Set для уникальности пользователей
+
+    courses.forEach((course) => {
+      course.enrollments.forEach((enrollment) => {
+        const user = enrollment.user;
+        usersSet.add(JSON.stringify(user)); // Добавляем строковое представление пользователя
+      });
+    });
+
+    // Преобразуем обратно в массив объектов
+    const users = Array.from(usersSet).map((userString: string) =>
+      JSON.parse(userString)
+    );
+
+    return users;
+  } catch (error) {
+    throw error;
   }
 };
