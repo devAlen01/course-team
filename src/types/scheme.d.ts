@@ -4,7 +4,7 @@ interface IUser {
     email: string;
     name: string;
     avatarUrl: string;
-    role: "ADMIN" | "STUDENT";
+    role: "ADMIN" | "USER";
   };
   token: string;
 }

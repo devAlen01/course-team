@@ -36,6 +36,14 @@
       letter-spacing: 0.12638796865940094px;
       text-align: center;
     }
+    .iconClose {
+      cursor: pointer;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: white;
+      font-size: 20px;
+    }
 
     .heartBlock {
       position: absolute;

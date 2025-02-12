@@ -1,70 +1,12 @@
 .Marketing1 {
-  margin-top: 40px;
+  position: relative;
+  margin-top: 150px;
   .content {
     display: flex;
     flex-direction: column;
     gap: 80px;
     @media (max-width: 428px) {
       gap: 30px;
-    }
-    .block1 {
-      display: flex;
-      justify-content: space-between;
-      .p {
-        cursor: pointer;
-        font-size: 20px;
-        font-family: sans-serif;
-        font-weight: 400;
-        line-height: 23.44px;
-        letter-spacing: -0.01em;
-        @media (max-width: 428px) {
-          display: none;
-        }
-      }
-      .text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        h1 {
-          font-family: Rubik;
-          font-family: sans-serif;
-          font-size: 50px;
-          font-weight: 700;
-          line-height: 70px;
-          @media (max-width: 428px) {
-            font-size: 24px;
-            line-height: 30px;
-            text-align: center;
-          }
-        }
-        p {
-          text-align: center;
-          width: 555px;
-          height: 60px;
-          font-family: Rubik;
-          font-family: sans-serif;
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 30px;
-          @media (max-width: 428px) {
-            width: 379px;
-            height: 54px;
-            font-size: 14px;
-            line-height: 18px;
-            text-align: center;
-          }
-          @media (max-width: 391px) {
-            width: 350px;
-          }
-          @media (max-width: 360px) {
-            width: 320px;
-          }
-          @media (max-width: 320px) {
-            width: 310px;
-          }
-        }
-      }
     }
     .block2 {
       display: flex;
@@ -181,7 +123,8 @@
           }
         }
       }
-      button {
+      .btnCourse {
+        cursor: pointer;
         width: 335px;
         height: 52px;
         border-radius: 5px;
@@ -211,64 +154,39 @@
           width: 300px;
         }
       }
+      .modalWindow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        width: 100%;
+        height: 100vh;
+        background: white;
+      }
     }
     .block3 {
       display: flex;
-      flex-direction: column;
+      align-items: start;
+      overflow-x: scroll;
+      scrollbar-width: none;
       gap: 20px;
-      transition: transform 0.3s ease;
-
-      hr {
-        width: 100%;
-      }
-      .text {
+      .blockText {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        p {
-          font-family: Rubik;
-          font-family: sans-serif;
-          font-size: 20px;
-          font-weight: 400;
-          line-height: 26px;
-          letter-spacing: -0.4000000059604645px;
-        }
-        .iconDown {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: blue;
-          color: white;
-        }
-        .iconUp {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: #0000004a;
-          color: white;
-          @media (max-width: 428px) {
-            width: 20px;
-            height: 20px;
-          }
-        }
-      }
-      .blockText1 {
-        cursor: pointer;
-        display: flex;
+        flex-direction: column;
         align-items: start;
-        .block33 {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          .img11 {
-            width: 341;
-            height: 170;
-            border-radius: 8px;
-            object-fit: contain;
-          }
-          p {
-            font-size: 15px;
-          }
+        gap: 10px;
+        .img {
+          width: 341;
+          height: 170;
+          border-radius: 8px;
+        }
+        p {
+          font-family: Montserrat;
+          font-family: sans-serif;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 24px;
+          letter-spacing: 0.1px;
         }
       }
     }
