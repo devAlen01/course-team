@@ -1,12 +1,13 @@
 import React, { FC } from "react";
 import scss from "./CourseStudent.module.scss";
-import { IoTimerOutline } from "react-icons/io5";
+import { IoClose, IoTimerOutline } from "react-icons/io5";
 import { FaChevronRight, FaHeart, FaRegHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorite, deleteFavorite } from "@/redux/createFavorite";
 import getYouTubeID from "get-youtube-id";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/redux/store";
+import { useCourseUnenroolMutation } from "@/redux/api/course";
 
 interface ICourse {
   title: string;
@@ -15,6 +16,7 @@ interface ICourse {
   price: string;
   id: string;
 }
+
 const CourseStudent: FC<ICourse> = ({
   title,
   youtubeUrl,
@@ -28,6 +30,15 @@ const CourseStudent: FC<ICourse> = ({
   const videoId = getYouTubeID(youtubeUrl);
   const imgUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   const router = useRouter();
+  const [unenroolMutation] = useCourseUnenroolMutation();
+
+  const unEnrool = (id: string) => {
+    try {
+      unenroolMutation(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div key={id} className={scss.courses}>
       <div className={scss.course}>
@@ -35,6 +46,7 @@ const CourseStudent: FC<ICourse> = ({
         <button className={scss.btn1}>
           {Number(price) === 0 ? "Бесплатно" : `${price} сом`}
         </button>
+        <IoClose onClick={() => unEnrool(id)} className={scss.iconClose} />
         <div className={scss.heartBlock}>
           {someFavorite ? (
             <FaHeart
@@ -66,12 +78,10 @@ const CourseStudent: FC<ICourse> = ({
               <IoTimerOutline className={scss.icon} />
               <span> 22ч 30мин</span>
             </p>
-
             <p>
               <IoTimerOutline className={scss.icon} />
               <span>64 уроков</span>
             </p>
-
             <p>
               <IoTimerOutline className={scss.icon} />
               <span> Прогресс</span>

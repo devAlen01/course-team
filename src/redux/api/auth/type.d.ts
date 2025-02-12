@@ -16,9 +16,9 @@ namespace AUTH {
     email: string;
     name: string;
     avatarUrl: string;
-    role: "ADMIN" | "STUDENT";
+    role: "ADMIN" | "USER";
   };
-  type UpdateProfileRoleRequest = { role: "ADMIN" | "STUDENT" };
+  type UpdateProfileRoleRequest = { role: "ADMIN" | "USER" };
 
   type LogoutResponse = {
     success: boolean;

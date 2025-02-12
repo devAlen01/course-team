@@ -73,4 +73,10 @@ namespace COURSE {
     updatedAt: string;
   }[];
   type CourseMyRequest = void;
+
+  type CourseEnroolResponse = {
+    success: boolean;
+  };
+
+  type CourseEnroolRequest = string;
 }

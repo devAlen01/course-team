@@ -19,13 +19,14 @@ import CourseStudent from "./CourseStudent";
 const ProfileSchema = z.object({
   name: z.string().min(2, "Имя пользователя должно быть не менее 2 символов"),
   avatarUrl: z.string().url("Введите корректный URL аватара"),
-  role: z.enum(["ADMIN", "STUDENT"]).optional(),
+  role: z.enum(["ADMIN", "USER"]).optional(),
 });
 
 type ProfileFormData = z.infer<typeof ProfileSchema>;
 
 const ProfileBlock: FC = () => {
   const { data } = useGetMeQuery();
+  console.log("🚀 ~ data:", data?.user.role);
   const [updateProfileMutation] = useUpdateProfileMutation();
   const [updateProfileRoleMutation] = useUpdateProfileRoleMutation();
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -66,7 +67,7 @@ const ProfileBlock: FC = () => {
     defaultValues: {
       name: data?.user?.name || "",
       avatarUrl: data?.user?.avatarUrl || "",
-      role: data?.user?.role ?? "STUDENT",
+      role: data?.user?.role ?? "USER",
     },
   });
 
@@ -79,7 +80,7 @@ const ProfileBlock: FC = () => {
         name: formData.name,
       }).unwrap();
       await updateProfileRoleMutation({
-        role: formData.role || "STUDENT",
+        role: formData.role || "USER",
       });
       setResponseMessage("Профиль успешно обновлён");
       setIsEdit(false);
@@ -124,7 +125,7 @@ const ProfileBlock: FC = () => {
         <div className={scss.textField}>
           <select {...register("role")} className="inputField">
             <option value="ADMIN">ADMIN</option>
-            <option value="STUDENT">STUDENT</option>
+            <option value="USER">STUDENT</option>
           </select>
         </div>
 
@@ -173,7 +174,9 @@ const ProfileBlock: FC = () => {
               <div className={scss.userInfo}>
                 <div className={scss.username}>
                   <h4 className={scss.name}>{data?.user.name}</h4>
-                  <span className={scss.role}>{data?.user.role}</span>
+                  <span className={scss.role}>
+                    {data?.user.role === "USER" ? "STUDENT" : "ADMIN"}
+                  </span>
                 </div>
                 <div className={scss.action}>
                   <button onClick={() => setIsEdit(!isEdit)}>

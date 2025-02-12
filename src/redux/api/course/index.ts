@@ -61,6 +61,26 @@ const api = index.injectEndpoints({
       }),
       providesTags: ["course"],
     }),
+    CourseEnrool: build.mutation<
+      COURSE.CourseEnroolResponse,
+      COURSE.CourseEnroolRequest
+    >({
+      query: (courseId) => ({
+        url: `/course/enroll/${courseId}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["course"],
+    }),
+    CourseUnenrool: build.mutation<
+      COURSE.CourseEnroolResponse,
+      COURSE.CourseEnroolRequest
+    >({
+      query: (courseId) => ({
+        url: `/course/unenroll/${courseId}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["course"],
+    }),
   }),
 });
 
@@ -71,4 +91,6 @@ export const {
   useCourseCreateMutation,
   useCourseDeleteMutation,
   useCourseMyQuery,
+  useCourseEnroolMutation,
+  useCourseUnenroolMutation,
 } = api;

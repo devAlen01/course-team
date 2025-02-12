@@ -16,7 +16,7 @@ const LayoutSite = ({ children }: { children: ReactNode }) => {
     : [];
   const courseDetailsPaths = data ? data.map((el) => `/details/${el.id}`) : [];
 
-  const path = ["/login", "/register", "/docs", ...courseDetailsPaths];
+  const path = ["/login", "/register", "/docs"];
   const checkPath = path.some((item) => item === pathname);
   const pathFooter = [
     "/login",
