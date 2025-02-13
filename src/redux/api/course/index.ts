@@ -81,6 +81,16 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["course"],
     }),
+    CourseenroolmentCount: build.query<
+      COURSE.CourseenroolmentCountResponse,
+      COURSE.CourseenroolmentCountRequest
+    >({
+      query: (authorId) => ({
+        url: `/course/enrollment-count?authorId=${authorId}`,
+        method: "GET",
+      }),
+      providesTags: ["course"],
+    }),
   }),
 });
 
@@ -93,4 +103,5 @@ export const {
   useCourseMyQuery,
   useCourseEnroolMutation,
   useCourseUnenroolMutation,
+  useCourseenroolmentCountQuery,
 } = api;

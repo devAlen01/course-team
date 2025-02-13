@@ -116,156 +116,155 @@ const ModalWindow: FC<ICourse> = ({ id, setPaymentWindow, paymentWindow }) => {
         </div>
         <h5>Безопасная оплата</h5>
       </div>
-      <div className={scss.card}>
-        <p>КРЕДИТНАЯ / ДЕБЕТОВАЯ КАРТА</p>
-        <div className={scss.cardImg}>
-          <img src={cardImg1.src} alt="img" />
-          <img src={cardImg2.src} alt="img" />
-          <img src={cardImg3.src} alt="img" />
-          <img src={cardImg4.src} alt="img" />
+      <div className={scss.cardInputsAll}>
+        <div className={scss.card}>
+          <p>КРЕДИТНАЯ / ДЕБЕТОВАЯ КАРТА</p>
+          <div className={scss.cardImg}>
+            <img src={cardImg1.src} alt="img" />
+            <img src={cardImg2.src} alt="img" />
+            <img src={cardImg3.src} alt="img" />
+            <img src={cardImg4.src} alt="img" />
+          </div>
         </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={scss.blockInputs}>
+            <div className={scss.saveSelects}>
+              <p>Выберите метод оплаты</p>
+              <select {...register("paymentMethod", { required: true })}>
+                <option value="">Visa/MasterCard / Amex / JCB</option>
+                <option value="mbank">MBank</option>
+                <option value="bakai">Bakai Bank</option>
+                <option value="rck">PCK Bank</option>
+              </select>
+              {errors.paymentMethod && (
+                <span
+                  style={{
+                    fontSize: "14px",
+                    color: "red",
+                  }}
+                >
+                  Поле обязательно для заполнения
+                </span>
+              )}
+            </div>
+            <div className={scss.blockInputss}>
+              <div className={scss.blockInput1}>
+                <div className={scss.inputCardName}>
+                  <p>
+                    Имя владельца карты <span>*</span>
+                  </p>
+                  <input
+                    type="text"
+                    {...register("cardholder", {
+                      required: true,
+                    })}
+                  />
+                  {errors.cardholder && (
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        color: "red",
+                      }}
+                    >
+                      Заполните это поле
+                    </span>
+                  )}
+                </div>
+                <div className={scss.inputCardNumber}>
+                  <p>
+                    Номер карты <span>*</span>
+                  </p>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    {...register("cardNumber", { required: true })}
+                    value={cardNumber}
+                    onChange={handleChange}
+                    maxLength={19}
+                    placeholder="1234 5678 9012 3456"
+                  />
+                  {errors.cardNumber && (
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        color: "red",
+                      }}
+                    >
+                      Введите корректный номер карты
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className={scss.blockInput1}>
+                <div className={scss.inputCardName}>
+                  <p>
+                    Дата истечения <span>*</span>
+                  </p>
+                  <input
+                    type="text"
+                    {...register("expiryDate", { required: true })}
+                    value={expiryDate}
+                    onChange={handleExpiryChange}
+                    maxLength={5}
+                    placeholder="MM/YY"
+                  />
+                  {errors.expiryDate && (
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        color: "red",
+                      }}
+                    >
+                      Введите дату
+                    </span>
+                  )}
+                </div>
+                <div className={scss.inputCardNumber}>
+                  <p>
+                    CVC/CVV <span>*</span>
+                  </p>
+                  <input
+                    type="text"
+                    {...register("cvv", {
+                      required: true,
+                      minLength: 3,
+                      maxLength: 3,
+                    })}
+                    value={cvv}
+                    onChange={handleCvvChange}
+                    maxLength={3}
+                    placeholder="CVV"
+                  />
+                  {errors.cvv && (
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        color: "red",
+                      }}
+                    >
+                      Введите CVC
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={scss.blockBtns22}>
+            <button
+              type="button"
+              onClick={() => setPaymentWindow(false)}
+              className={scss.btn1}
+            >
+              Назад
+            </button>
+            <button type="submit" className={scss.btn2}>
+              Оплата
+            </button>
+          </div>
+        </form>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={scss.blockInputs}>
-          <div className={scss.saveSelects}>
-            <p>Выберите метод оплаты</p>
-            <select {...register("paymentMethod", { required: true })}>
-              <option value="">Visa/MasterCard / Amex / JCB</option>
-              <option value="mbank">MBank</option>
-              <option value="bakai">Bakai Bank</option>
-              <option value="rck">PCK Bank</option>
-            </select>
-            {errors.paymentMethod && (
-              <span
-                style={{
-                  fontSize: "10px",
-                  color: "red",
-                }}
-              >
-                Поле обязательно для заполнения
-              </span>
-            )}
-          </div>
-          <div className={scss.blockInputss}>
-            <div className={scss.blockInput1}>
-              <div className={scss.inputCardName}>
-                <p>
-                  Имя владельца карты <span>*</span>
-                </p>
-                <input
-                  type="text"
-                  {...register("cardholder", {
-                    required: true,
-                  })}
-                />
-                {errors.cardholder && (
-                  <span
-                    style={{
-                      fontSize: "10px",
-                      color: "red",
-                    }}
-                  >
-                    Заполните это поле
-                  </span>
-                )}
-              </div>
-              <div className={scss.inputCardNumber}>
-                <p>
-                  Номер карты <span>*</span>
-                </p>
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  {...register("cardNumber", { required: true })}
-                  value={cardNumber}
-                  onChange={handleChange}
-                  maxLength={19}
-                  placeholder="1234 5678 9012 3456"
-                />
-                {errors.cardNumber && (
-                  <span
-                    style={{
-                      fontSize: "10px",
-                      color: "red",
-                    }}
-                  >
-                    Введите корректный номер карты
-                  </span>
-                )}
-              </div>
-            </div>
-            <div className={scss.blockInput1}>
-              <div className={scss.inputCardName}>
-                <p>
-                  Дата истечения <span>*</span>
-                </p>
-                <input
-                  type="text"
-                  {...register("expiryDate", { required: true })}
-                  value={expiryDate}
-                  onChange={handleExpiryChange}
-                  maxLength={5}
-                  placeholder="MM/YY"
-                />
-                {errors.expiryDate && (
-                  <span
-                    style={{
-                      fontSize: "10px",
-                      color: "red",
-                    }}
-                  >
-                    Введите дату
-                  </span>
-                )}
-              </div>
-              <div className={scss.inputCardNumber}>
-                <p>
-                  CVC/CVV <span>*</span>
-                </p>
-                <input
-                  type="text"
-                  {...register("cvv", {
-                    required: true,
-                    minLength: 3,
-                    maxLength: 3,
-                  })}
-                  value={cvv}
-                  onChange={handleCvvChange}
-                  maxLength={3}
-                  placeholder="CVV"
-                />
-                {errors.cvv && (
-                  <span
-                    style={{
-                      fontSize: "10px",
-                      color: "red",
-                    }}
-                  >
-                    Введите CVC
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={scss.blockBtns22}>
-          <button
-            type="button"
-            onClick={() => setPaymentWindow(false)}
-            className={scss.btn1}
-          >
-            Назад
-          </button>
-          <button type="submit" className={scss.btn2}>
-            Оплата
-          </button>
-        </div>
-      </form>
     </div>
   );
 };
 
 export default ModalWindow;
-function setValue(arg0: string, arg1: string) {
-  throw new Error("Function not implemented.");
-}
