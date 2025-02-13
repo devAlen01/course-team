@@ -81,6 +81,14 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["course"],
     }),
+    review: build.mutation<COURSE.ReviewResponse, COURSE.ReviewRequest>({
+      query: (data) => ({
+        url: `/course/review/`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["course"],
+    }),
     CourseenroolmentCount: build.query<
       COURSE.CourseenroolmentCountResponse,
       COURSE.CourseenroolmentCountRequest
@@ -103,5 +111,6 @@ export const {
   useCourseMyQuery,
   useCourseEnroolMutation,
   useCourseUnenroolMutation,
+  useReviewMutation,
   useCourseenroolmentCountQuery,
 } = api;

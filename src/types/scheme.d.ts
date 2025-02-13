@@ -31,4 +31,15 @@ interface Course {
     name: string;
     email: string;
   };
+  reviews: Array<{
+    id: string;
+    review: string;
+    createdAt: string;
+    updatedAt: string;
+    user: {
+      id: string;
+      name: string;
+      avatarUrl: string;
+    };
+  }>;
 }

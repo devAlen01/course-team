@@ -106,6 +106,9 @@ export async function getAllCourses() {
           },
         },
         reviews: {
+          orderBy: {
+            createdAt: "desc",
+          },
           select: {
             id: true,
             review: true,

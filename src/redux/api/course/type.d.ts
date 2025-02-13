@@ -79,6 +79,13 @@ namespace COURSE {
   };
   type CourseEnroolRequest = string;
 
+
+  type ReviewRequest = {
+    courseId: string;
+    review: string;
+  };
+  type ReviewResponse = void;
+
   type CourseenroolmentCountResponse = {
     id: string;
     name: string;
@@ -87,4 +94,5 @@ namespace COURSE {
     role: "ADMIN" | "USER";
   }[];
   type CourseenroolmentCountRequest = string;
+
 }
