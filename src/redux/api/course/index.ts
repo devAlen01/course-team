@@ -1,3 +1,4 @@
+import build from "next/dist/build";
 import { api as index } from "..";
 
 const api = index.injectEndpoints({
@@ -81,6 +82,14 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["course"],
     }),
+    review: build.mutation<COURSE.ReviewResponse, COURSE.ReviewRequest>({
+      query: (data) => ({
+        url: `/course/review/`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["course"],
+    }),
   }),
 });
 
@@ -93,4 +102,5 @@ export const {
   useCourseMyQuery,
   useCourseEnroolMutation,
   useCourseUnenroolMutation,
+  useReviewMutation,
 } = api;

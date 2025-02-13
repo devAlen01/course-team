@@ -79,4 +79,10 @@ namespace COURSE {
   };
 
   type CourseEnroolRequest = string;
+
+  type ReviewRequest = {
+    courseId: string;
+    review: string;
+  };
+  type ReviewResponse = void;
 }
