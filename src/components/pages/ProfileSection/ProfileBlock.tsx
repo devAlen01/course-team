@@ -10,11 +10,18 @@ import {
   useUpdateProfileMutation,
   useUpdateProfileRoleMutation,
 } from "@/redux/api/auth";
-import { useCourseAdminQuery, useCourseMyQuery } from "@/redux/api/course";
+import {
+  useCourseAdminQuery,
+  useCourseenroolmentCountQuery,
+  useCourseMyQuery,
+  useCourseUnenroolMutation,
+} from "@/redux/api/course";
 import CourseAdmin from "./CourseAdmin";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import CourseStudent from "./CourseStudent";
+import { skipToken } from "@reduxjs/toolkit/query/react";
+import StudentAll from "./StudentAll";
 
 const ProfileSchema = z.object({
   name: z.string().min(2, "Имя пользователя должно быть не менее 2 символов"),
@@ -25,8 +32,12 @@ const ProfileSchema = z.object({
 type ProfileFormData = z.infer<typeof ProfileSchema>;
 
 const ProfileBlock: FC = () => {
+  const [enroolWindow, setEnroolWindow] = useState(false);
   const { data } = useGetMeQuery();
-  console.log("🚀 ~ data:", data?.user.role);
+  const { data: student } = useCourseenroolmentCountQuery(
+    data?.user.id ?? skipToken
+  );
+
   const [updateProfileMutation] = useUpdateProfileMutation();
   const [updateProfileRoleMutation] = useUpdateProfileRoleMutation();
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -47,16 +58,23 @@ const ProfileBlock: FC = () => {
     setActiveButton(buttonName);
   };
 
-  const filteredCourses = courseAdmin?.filter((course) => {
-    const price = Number(course.price);
-    if (activeButton === "Платные") {
-      return price > 0;
-    }
-    if (activeButton === "Бесплатные") {
-      return price === 0;
-    }
-    return true;
-  });
+  const filteredCourses =
+    activeButton === "Купленные курсы"
+      ? courseMy
+      : activeButton === "Все студенты"
+      ? student
+      : courseAdmin?.filter((course) => {
+          const price = Number(course.price);
+          if (activeButton === "Платные") {
+            return price > 0;
+          }
+          if (activeButton === "Бесплатные") {
+            return price === 0;
+          }
+          return true;
+        });
+
+  console.log("🚀 ~ filteredCourses ~ student:", student);
 
   const {
     register,
@@ -189,7 +207,13 @@ const ProfileBlock: FC = () => {
           <div className={scss.block1}>
             {data?.user.role === "ADMIN" ? (
               <div className={scss.blockBtn}>
-                {["Все курсы", "Платные", "Бесплатные"].map((name) => (
+                {[
+                  "Все курсы",
+                  "Платные",
+                  "Бесплатные",
+                  "Все студенты",
+                  "Купленные курсы",
+                ].map((name) => (
                   <span
                     key={name}
                     className={`${scss.filterButton} ${
@@ -200,10 +224,12 @@ const ProfileBlock: FC = () => {
                     {name}
                   </span>
                 ))}
-                <button className={scss.btn1}>
-                  <span onClick={() => router.push(`/create`)}>
-                    Создавать курсы
-                  </span>
+
+                <button
+                  onClick={() => router.push(`/create`)}
+                  className={scss.btn1}
+                >
+                  <span>Создавать курсы</span>
                 </button>
               </div>
             ) : (
@@ -224,17 +250,33 @@ const ProfileBlock: FC = () => {
             {data?.user.role === "ADMIN" &&
             filteredCourses &&
             filteredCourses.length > 0 ? (
-              <div className={scss.block}>
-                {filteredCourses.map((el) => (
-                  <CourseAdmin
-                    key={el.id}
-                    title={el.title}
-                    youtubeUrl={el.youtubeUrl}
-                    description={el.description}
-                    price={el.price}
-                    id={el.id}
-                  />
-                ))}
+              <div
+                className={
+                  (filteredCourses || student)?.some((el) => "title" in el)
+                    ? scss.block
+                    : scss.anotherClass
+                }
+              >
+                {(filteredCourses || student)?.map((el) =>
+                  "title" in el ? (
+                    <CourseAdmin
+                      key={el.id}
+                      title={el.title}
+                      youtubeUrl={el.youtubeUrl}
+                      description={el.description}
+                      price={el.price}
+                      id={el.id}
+                    />
+                  ) : (
+                    <StudentAll
+                      id={el.id}
+                      name={el.name}
+                      email={el.email}
+                      avatarUrl={el.avatarUrl}
+                      role={el.role}
+                    />
+                  )
+                )}
               </div>
             ) : (
               <div className={scss.block}>
@@ -246,6 +288,8 @@ const ProfileBlock: FC = () => {
                     description={el.description}
                     price={el.price}
                     id={el.id}
+                    enroolWindow={enroolWindow}
+                    setEnroolWindow={setEnroolWindow}
                   />
                 ))}
               </div>

@@ -65,7 +65,7 @@ const Details = () => {
 
             const isEnrolled =
               Number(el.price) === 0 ||
-              me?.user.email === el.author.email ||
+              me?.user.name === el.author.name ||
               (courseMy &&
                 courseMy?.some((course: ICourse) => course.id === el.id));
 
