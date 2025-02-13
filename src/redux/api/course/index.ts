@@ -1,4 +1,3 @@
-import build from "next/dist/build";
 import { api as index } from "..";
 
 const api = index.injectEndpoints({
@@ -90,6 +89,16 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["course"],
     }),
+    CourseenroolmentCount: build.query<
+      COURSE.CourseenroolmentCountResponse,
+      COURSE.CourseenroolmentCountRequest
+    >({
+      query: (authorId) => ({
+        url: `/course/enrollment-count?authorId=${authorId}`,
+        method: "GET",
+      }),
+      providesTags: ["course"],
+    }),
   }),
 });
 
@@ -103,4 +112,5 @@ export const {
   useCourseEnroolMutation,
   useCourseUnenroolMutation,
   useReviewMutation,
+  useCourseenroolmentCountQuery,
 } = api;

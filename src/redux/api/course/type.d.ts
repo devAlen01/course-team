@@ -77,12 +77,22 @@ namespace COURSE {
   type CourseEnroolResponse = {
     success: boolean;
   };
-
   type CourseEnroolRequest = string;
+
 
   type ReviewRequest = {
     courseId: string;
     review: string;
   };
   type ReviewResponse = void;
+
+  type CourseenroolmentCountResponse = {
+    id: string;
+    name: string;
+    avatarUrl: string;
+    email: string;
+    role: "ADMIN" | "USER";
+  }[];
+  type CourseenroolmentCountRequest = string;
+
 }

@@ -126,6 +126,7 @@
       }
     }
     .block1 {
+      position: relative;
       padding: 30px;
       display: flex;
       flex-direction: column;
@@ -180,7 +181,7 @@
         }
         .btn1 {
           cursor: pointer;
-          width: 138;
+          width: 138px;
           height: 36px;
           border-radius: 5px;
           border-radius: 6px;
@@ -203,6 +204,11 @@
         scrollbar-width: none;
         height: auto;
         display: flex;
+        gap: 20px;
+      }
+      .anotherClass {
+        display: flex;
+        flex-direction: column;
         gap: 20px;
       }
     }
