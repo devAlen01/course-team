@@ -1,6 +1,6 @@
 .chatContainer {
   margin-top: 100px;
-  margin-left: 21pc;
+  margin-left: 34pc;
   display: flex;
   flex-direction: row;
   height: 80vh;
@@ -12,6 +12,7 @@
 }
 
 .sidebar {
+  margin-top: 20px;
   width: 250px;
   overflow-y: auto;
   @media (max-width: 768px) {

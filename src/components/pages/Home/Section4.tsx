@@ -13,8 +13,8 @@ const Section4 = () => {
       <div className="container">
         <h1 className={styles.title}>Доступные курсы</h1>
         <p className={styles.description}>
-          Мы предоставляем множество функций, которые вы можете <br />{" "}
-          использовать. Постепенное накопление информации.
+          Мы предоставляем множество функций, которые вы можете использовать.
+          Постепенное накопление информации.
         </p>
         <div className={styles.cards}>
           {data?.slice(0, 8).map((item) => (

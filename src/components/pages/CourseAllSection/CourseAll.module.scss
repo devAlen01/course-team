@@ -47,12 +47,14 @@
       }
     }
     .items {
-      width: 100%;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 17px;
+      @media (max-width: 428px) {
+        gap: 25px;
+      }
     }
     .show_more {
       cursor: pointer;

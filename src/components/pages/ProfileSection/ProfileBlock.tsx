@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
   useGetMeQuery,
+  useLogoutMutation,
   useUpdateProfileMutation,
   useUpdateProfileRoleMutation,
 } from "@/redux/api/auth";
@@ -38,6 +39,16 @@ const ProfileBlock: FC = () => {
     data?.user.id ?? skipToken
   );
 
+  const [logoutMutation] = useLogoutMutation();
+  const handleLogout = async () => {
+    try {
+      await logoutMutation();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   const [updateProfileMutation] = useUpdateProfileMutation();
   const [updateProfileRoleMutation] = useUpdateProfileRoleMutation();
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -59,7 +70,7 @@ const ProfileBlock: FC = () => {
   };
 
   const filteredCourses =
-    activeButton === "Купленные курсы"
+    activeButton === "Купленные"
       ? courseMy
       : activeButton === "Все студенты"
       ? student
@@ -73,8 +84,6 @@ const ProfileBlock: FC = () => {
           }
           return true;
         });
-
-  console.log("🚀 ~ filteredCourses ~ student:", student);
 
   const {
     register,
@@ -201,6 +210,9 @@ const ProfileBlock: FC = () => {
                     Редактировать
                   </button>
                 </div>
+                <button onClick={handleLogout} className={scss.logoutBtn}>
+                  Выйти
+                </button>
               </div>
             </div>
           </div>
@@ -211,8 +223,8 @@ const ProfileBlock: FC = () => {
                   "Все курсы",
                   "Платные",
                   "Бесплатные",
+                  "Купленные",
                   "Все студенты",
-                  "Купленные курсы",
                 ].map((name) => (
                   <span
                     key={name}
@@ -227,9 +239,15 @@ const ProfileBlock: FC = () => {
 
                 <button
                   onClick={() => router.push(`/create`)}
-                  className={scss.btn1}
+                  className={scss.btn1111}
                 >
-                  <span>Создавать курсы</span>
+                  Добавить
+                </button>
+                <button
+                  className={scss.btn1111}
+                  onClick={() => router.push(`/chat`)}
+                >
+                  <span>Чат</span>
                 </button>
               </div>
             ) : (

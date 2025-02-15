@@ -10,9 +10,16 @@
     line-height: 70px;
     margin-bottom: 20px;
     text-align: center;
+    @media (max-width: 428px) {
+      font-size: 24px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
   }
 
   .description {
+    width: 555px;
+    height: 60px;
     color: #4f5665;
     font-family: Rubik, sans-serif;
     font-size: 16px;
@@ -20,6 +27,14 @@
     line-height: 30px;
     margin-bottom: 70px;
     text-align: center;
+    @media (max-width: 428px) {
+      padding-left: 10px;
+      width: 349px;
+      height: 54px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+    }
   }
 
   .cards {
@@ -28,6 +43,9 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
+    @media (max-width: 428px) {
+      gap: 25px;
+    }
   }
   .show_more {
     margin-top: 50px;

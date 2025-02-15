@@ -1,6 +1,6 @@
 .ProfileBlock {
   margin-top: 120px;
-  margin-left: 21pc;
+  margin-left: 26pc;
   @media (max-width: 884px) {
     margin-left: 10pc;
   }
@@ -38,7 +38,10 @@
       }
       @media (max-width: 428px) {
         width: 390px;
-        height: 364px;
+        height: 404px;
+      }
+      @media (max-width: 391px) {
+        width: 345px;
       }
       @media (max-width: 360px) {
         width: 360px;
@@ -65,6 +68,9 @@
           top: 100px;
           left: 140px;
         }
+        @media (max-width: 391px) {
+          left: 115px;
+        }
         img {
           width: 100%;
           height: 100%;
@@ -85,29 +91,42 @@
           display: flex;
           align-items: center;
           justify-content: space-around;
-          gap: 67%;
+          gap: 60%;
           @media (max-width: 428px) {
+            margin-top: 110px;
+            width: 400px;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 0;
+            gap: 20px;
           }
           .username {
+            @media (max-width: 428px) {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 10px;
+            }
             .name {
-              color: rgb(37, 43, 66);
-              font-family: Rubik;
-              font-size: 20px;
+              font-family: Poppins;
               font-weight: 500;
+              font-size: 20px;
+              line-height: 30px;
+              letter-spacing: 0px;
+              color: #252b42;
             }
             .role {
-              color: rgb(0, 0, 0);
-              font-family: Rubik;
-              font-size: 14px;
+              font-family: Poppins;
               font-weight: 300;
+              font-size: 14px;
+              line-height: 21px;
+              color: #000000;
             }
           }
           .action {
             button {
-              padding: 11px 20px 11px 20px;
+              width: 159px;
+              height: 46px;
               border: none;
               border-radius: 6px;
               background: rgb(35, 166, 240);
@@ -117,9 +136,27 @@
               font-weight: 400;
               cursor: pointer;
               @media (max-width: 428px) {
-                margin-top: 200px;
-                margin-right: 20px;
+                width: 289px;
+                height: 46px;
               }
+            }
+          }
+          .logoutBtn {
+            display: none;
+            @media (max-width: 428px) {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 289px;
+              height: 46px;
+              border-radius: 6px;
+              background: rgb(35, 166, 240);
+              color: rgb(255, 255, 255);
+              font-family: Rubik;
+              font-size: 18px;
+              font-weight: 400;
+              border: none;
+              cursor: pointer;
             }
           }
         }
@@ -149,27 +186,45 @@
         width: 660px;
       }
       @media (max-width: 428px) {
-        width: 0;
-        height: 0;
+        width: 400px;
+        height: auto;
         border: none;
         padding-left: 0;
+      }
+      @media (max-width: 391px) {
+        width: 370px;
       }
       .blockBtn {
         display: flex;
         align-items: center;
         gap: 19px;
+        @media (max-width: 428px) {
+          width: 387px;
+          overflow-x: scroll;
+        }
+        @media (max-width: 391px) {
+          width: 340px;
+        }
         .filterButton {
-          width: auto;
+          width: 110px;
           height: 36px;
           border-radius: 5px;
           background: white;
           color: black;
           font-size: 13px;
-          padding: 10px;
           border: 1px solid gray;
           cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           transition: background 0.3s, color 0.3s;
-
+          @media (max-width: 428px) {
+            width: 91px;
+            height: 32px;
+            padding: 20px 60px;
+            border-radius: 3.89px;
+            font-size: 14px;
+          }
           &:hover {
             background: #f0f0f0;
           }
@@ -179,20 +234,20 @@
             color: white;
           }
         }
-        .btn1 {
+        .btn1111 {
           cursor: pointer;
-          width: 138px;
-          height: 36px;
+          padding: 8px 40px;
           border-radius: 5px;
-          border-radius: 6px;
           background: #23a6f0;
           border: none;
-          span {
-            font-size: 13px;
-            font-weight: 400;
-            line-height: 24px;
-            color: #ffffff;
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 24px;
+          color: #ffffff;
+          text-align: center;
+          @media (max-width: 428px) {
           }
+
           &.active {
             background: rgb(35, 166, 240);
             color: white;

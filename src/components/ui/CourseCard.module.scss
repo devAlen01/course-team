@@ -40,8 +40,8 @@
       position: absolute;
       top: 102.14px;
       left: 110.14px;
-      width: 25;
-      height: 25;
+      width: 25px;
+      height: 25px;
       border-radius: 28.3px;
       background: #ffffff;
       display: flex;
@@ -120,6 +120,7 @@
         height: 28.64px;
         border-radius: 23.38px;
         border: 0.63px solid #23a6f0;
+        color: #23a6f0;
         background: none;
         transition: background 0.3s ease, color 0.3s ease;
         cursor: pointer;
