@@ -33,7 +33,7 @@ const Header: FC = () => {
         <div className={scss.content}>
           <div className={scss.logo}>
             <Link
-              onClick={() => (isMobile ? setIsOpen(!isOpen) : null)}
+              onClick={() => (isMobile ? setIsOpen(false) : null)}
               href={"/"}
               className={scss.logo_title}
             >
