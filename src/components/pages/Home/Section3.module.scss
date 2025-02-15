@@ -1,7 +1,16 @@
 .Section3 {
   margin-top: 50px;
+  @media (max-width: 428px) {
+    margin-top: 0;
+  }
+  @media (max-width: 391px) {
+    display: none;
+  }
   .content {
     display: flex;
+    @media (max-width: 428px) {
+      flex-direction: column;
+    }
     gap: 20px;
     .block1 {
       width: 654px;
@@ -11,10 +20,19 @@
       align-items: center;
       justify-content: center;
       gap: 110px;
+      @media (max-width: 428px) {
+        width: 400px;
+        height: 503px;
+        gap: 40px;
+      }
       .text1 {
         display: flex;
         flex-direction: column;
         gap: 20px;
+        @media (max-width: 428px) {
+          align-items: center;
+          gap: 5px;
+        }
         h1 {
           font-family: Rubik;
           font-family: sans-serif;
@@ -23,6 +41,7 @@
           line-height: 70px;
           text-align: left;
           color: #0b132a;
+          font-size: 24px;
         }
         p {
           width: 555px;
@@ -34,33 +53,72 @@
           line-height: 30px;
           text-align: left;
           color: #4f5665;
+          @media (max-width: 428px) {
+            width: 349px;
+            height: 54px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+          }
+          @media (max-width: 391px) {
+            width: 300px;
+            height: 54px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+          }
         }
       }
       .text2 {
         display: flex;
         flex-direction: column;
         gap: 20px;
+        @media (max-width: 428px) {
+          align-items: center;
+          gap: 5px;
+        }
         h1 {
           width: 248px;
           height: 70px;
-          font-family: Rubik;
+          font-family: sans-serif;
           font-family: sans-serif;
           font-size: 96px;
           font-weight: 400;
           line-height: 70px;
           text-align: left;
           color: #23a6f0;
+          @media (max-width: 428px) {
+            width: 96px;
+            height: 70px;
+            font-family: sans-serif;
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 70px;
+          }
         }
         p {
           width: 555px;
           height: 60px;
-          font-family: Rubik;
           font-family: sans-serif;
           font-size: 16px;
           font-weight: 400;
           line-height: 30px;
           text-align: left;
           color: #4f5665;
+          @media (max-width: 428px) {
+            width: 348px;
+            height: 54px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+          }
+          @media (max-width: 391px) {
+            width: 300px;
+            height: 54px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+          }
         }
       }
     }
@@ -73,12 +131,25 @@
       justify-content: center;
       gap: 100px;
       background: #f5f9fc;
+      @media (max-width: 428px) {
+        width: 400px;
+        height: 503px;
+        gap: 60px;
+      }
+      @media (max-width: 428px) {
+        width: 360px;
+        height: 503px;
+      }
       .blockText1 {
         display: flex;
         gap: 32px;
         img {
           width: 60px;
           height: 60px;
+          @media (max-width: 428px) {
+            width: 43px;
+            height: 43px;
+          }
         }
         .text {
           display: flex;
@@ -95,6 +166,13 @@
             text-align: left;
             text-underline-position: from-font;
             text-decoration-skip-ink: none;
+            @media (max-width: 428px) {
+              font-family: sans-serif;
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 17.57px;
+              letter-spacing: 0.07px;
+            }
           }
           p {
             width: 349px;
@@ -106,6 +184,13 @@
             line-height: 20px;
             letter-spacing: 0.20000000298023224px;
             text-align: left;
+            @media (max-width: 428px) {
+              width: 255px;
+              height: 44px;
+              font-size: 12px;
+              line-height: 14.64px;
+              letter-spacing: 0.15px;
+            }
           }
         }
       }

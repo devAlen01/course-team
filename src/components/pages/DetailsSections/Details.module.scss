@@ -17,6 +17,9 @@
         position: relative;
         display: flex;
         gap: 40px;
+        @media (max-width: 428px) {
+          flex-direction: column;
+        }
         .btn1 {
           position: absolute;
           top: 0;
@@ -176,8 +179,8 @@
         align-items: start;
         gap: 10px;
         .img {
-          width: 341;
-          height: 170;
+          width: 341px;
+          height: 170px;
           border-radius: 8px;
         }
         p {

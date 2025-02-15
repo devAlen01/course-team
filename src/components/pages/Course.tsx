@@ -23,7 +23,7 @@ const Course = () => {
         <div className={styles.content1}>
           <div className={styles.left}>
             <h1>
-              Развивайте свои навыки с <br /> помощью онлайн-курсов <br />с
+              Развивайте свои навыки с помощью онлайн-курсов <br />с
               онлайн-обучением
             </h1>
             <button className={styles.btn}>Присоединиться</button>
@@ -33,8 +33,8 @@ const Course = () => {
         <div className={styles.content2}>
           <h1 className={styles.title}>Популярные курсы</h1>
           <p className={styles.paragraph}>
-            Мы предоставляем множество функций, которые вы можете <br />
-            использовать. Постепенное накопление информации
+            Мы предоставляем множество функций, которые вы можете использовать.
+            Постепенное накопление информации
           </p>
           <div className={styles.filter}>
             {[

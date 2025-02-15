@@ -165,6 +165,10 @@
   width: 400px;
   height: 200px;
   border-radius: 10px;
+  @media (max-width: 428px) {
+    width: 340px;
+    left: 0;
+  }
   h1 {
     color: white;
   }

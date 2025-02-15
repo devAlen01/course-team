@@ -20,6 +20,8 @@
       }
 
       span {
+        width: 555px;
+        height: 60px;
         color: rgb(79, 86, 101);
         font-family: Rubik, sans-serif;
         font-size: clamp(12px, 2vw, 16px);
@@ -124,27 +126,44 @@
       gap: 15px;
 
       .left {
+        gap: 15px;
         h1 {
-          font-size: clamp(18px, 5vw, 24px);
-          line-height: clamp(24px, 6vw, 32px);
+          width: 330px;
+          height: 68px;
+          font-family: sans-serif;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 34px;
+          letter-spacing: 0%;
+          text-align: center;
         }
 
         span {
-          font-size: clamp(10px, 3vw, 12px);
-          line-height: clamp(15px, 4vw, 18px);
+          width: 350px;
+          height: 54px;
+          font-family: sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 18px;
+          letter-spacing: 0%;
+          text-align: center;
         }
 
         .btn {
-          width: clamp(100%, 50vw, 150px);
-          padding: clamp(8px, 2vw, 14px) clamp(20px, 8vw, 70px);
+          width: 319px;
+          height: 59px;
+          border-radius: 10px;
+          font-family: sans-serif;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 25px;
         }
       }
 
       .right {
-        margin-left: 100px;
-        width: clamp(200px, 150vw, 476px);
-        height: 456px;
-        order: 2;
+        margin-top: 85px;
+        width: 326px;
+        height: 306px;
       }
     }
   }

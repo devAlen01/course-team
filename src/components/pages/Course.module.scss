@@ -3,20 +3,35 @@
     display: flex;
     justify-content: center;
     padding-top: 150px;
-
+    @media (max-width: 428px) {
+      align-items: center;
+    }
     .left {
       display: flex;
       flex-direction: column;
       gap: 70px;
       align-items: flex-start;
-
+      @media (max-width: 428px) {
+        align-items: center;
+      }
       h1 {
+        width: 682px;
+        height: 210px;
         color: rgb(11, 19, 42);
         font-family: Rubik, sans-serif;
         font-size: clamp(24px, 5vw, 50px);
         font-weight: 700;
         line-height: clamp(30px, 6vw, 70px);
         text-align: left;
+        @media (max-width: 428px) {
+          width: 353px;
+          height: 105px;
+          font-weight: 800;
+          font-size: 22px;
+          line-height: 35px;
+          letter-spacing: 0%;
+          text-align: center;
+        }
       }
 
       .btn {
@@ -38,7 +53,15 @@
         background: rgb(35, 166, 240);
         cursor: pointer;
         transition: background 0.3s ease;
-
+        @media (max-width: 428px) {
+          width: 319px;
+          height: 59px;
+          border-radius: 10px;
+          font-family: Rubik;
+          font-size: 16px;
+          line-height: 25px;
+          letter-spacing: 0%;
+        }
         &:hover {
           background: rgb(30, 140, 220);
         }
@@ -46,9 +69,13 @@
     }
 
     .right {
-      width: clamp(200px, 50vw, 476px);
-      height: clamp(150px, 40vw, 456px);
+      width: 492px;
+      height: 456px;
       background: url("/assets/boy2.png") no-repeat center/cover;
+      @media (max-width: 428px) {
+        width: 197;
+        height: 183;
+      }
     }
   }
 
@@ -67,12 +94,22 @@
     }
 
     .paragraph {
+      width: 555px;
+      height: 60px;
       color: rgb(79, 86, 101);
-      font-family: Rubik;
+      font-family: sans-serif;
       font-size: clamp(14px, 4vw, 16px);
       font-weight: 400;
       line-height: clamp(20px, 6vw, 30px);
       margin-bottom: 30px;
+      text-align: center;
+      @media (max-width: 428px) {
+        margin-top: 12px;
+        width: 349px;
+        height: 54px;
+        font-size: 14px;
+        line-height: 18px;
+      }
     }
 
     .filter {
@@ -112,16 +149,6 @@
       align-items: center;
       justify-content: center;
       gap: 50px;
-
-      @media (max-width: 1024px) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
       .course {
         width: 247.28px;
         height: 374.05px;
@@ -202,38 +229,9 @@
       }
 
       .right {
-        width: 80%;
-        height: auto;
-      }
-    }
-
-    .content2 {
-      .courses {
-        display: flex;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding-bottom: 10px;
-        gap: 15px;
-        scroll-behavior: smooth;
-
-        &::-webkit-scrollbar {
-          height: 6px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-          background: #ccc;
-          border-radius: 10px;
-        }
-
-        &::-webkit-scrollbar-thumb:hover {
-          background: #999;
-        }
-
-        .course {
-          flex: 0 0 auto;
-          width: 250px;
-          scroll-snap-align: start;
-        }
+        margin-top: 87px;
+        width: 300px;
+        height: 300px;
       }
     }
   }

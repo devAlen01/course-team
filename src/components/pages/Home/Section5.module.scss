@@ -13,6 +13,8 @@
   }
 
   .description {
+    width: 555px;
+    height: 60px;
     color: #4f5665;
     font-family: Rubik, sans-serif;
     font-size: 16px;
@@ -172,6 +174,44 @@
     .card {
       width: 100%;
       flex: 1 1 100%;
+    }
+  }
+  @media (max-width: 428px) {
+    .title {
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+  @media (max-width: 428px) {
+    .description {
+      width: 349px;
+      height: 54px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+  @media (max-width: 428px) {
+    p {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 391px) {
+    .title {
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+  @media (max-width: 391px) {
+    .description {
+      width: 309px;
+    }
+  }
+  @media (max-width: 391px) {
+  }
+  @media (max-width: 391px) {
+    p {
+      font-size: 14px;
+      line-height: 25px;
     }
   }
 }
