@@ -1,7 +1,8 @@
 .SiteBar {
   position: fixed;
   top: 100px;
-  left: 300px;
+  left: 100px;
+
   @media (max-width: 884px) {
     left: 0;
   }
@@ -20,7 +21,7 @@
       margin-top: 45px;
       display: flex;
       flex-direction: column;
-      gap: 13pc;
+      gap: 11pc;
 
       .block1 {
         display: flex;
