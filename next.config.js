@@ -6,6 +6,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true, // Игнорировать ошибки ESLint при билде
   },
+  images: {
+    unoptimized: true,
+  },
 
   typescript: {
     ignoreBuildErrors: true, // Игнорировать ошибки TypeScript при билде
