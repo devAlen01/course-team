@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import scss from "./CourseStudent.module.scss";
 import { IoClose, IoTimerOutline } from "react-icons/io5";

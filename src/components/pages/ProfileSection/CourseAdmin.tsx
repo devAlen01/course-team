@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC, useState } from "react";
 import scss from "./CourseAdmin.module.scss";
 import getYouTubeID from "get-youtube-id";
