@@ -9,7 +9,10 @@ interface FavoriteItem {
 }
 
 const initialState: { favorite: FavoriteItem[] } = {
-  favorite: JSON.parse(localStorage.getItem("favorite") || "[]"),
+  favorite:
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("favorite") || "[]")
+      : [],
 };
 
 export const createFavoriteSlice = createSlice({
